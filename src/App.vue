@@ -2,16 +2,19 @@
   <div id="app">
     placeholder
 		<characters></characters>
+		<spell-book></spell-book>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Characters from './components/Characters.vue';
+import SpellBook from './components/SpellBook.vue';
 
 @Component({
   components: {
 		Characters,
+		SpellBook,
   },
 })
 export default class App extends Vue {}
