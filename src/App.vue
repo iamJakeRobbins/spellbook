@@ -1,9 +1,13 @@
 <template>
   <div id="app">
-    placeholder
-		<characters></characters>
-		<spell-book></spell-book>
-		<prepared/>
+		<div class="appbackground">
+			<!-- <div class="appbody"> -->
+	    placeholder
+			<characters></characters>
+			<spell-book></spell-book>
+			<prepared/>
+			<!-- </div> -->
+		</div>
   </div>
 </template>
 
@@ -31,5 +35,15 @@ export default class App extends Vue {}
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+	background-color: black
+}
+.appbackground {
+	height: 100%;
+	background-color: white;
+
+}
+.appbody {
+	width: 80%;
+	background-color: white;
 }
 </style>
