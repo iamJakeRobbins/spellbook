@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-		<div class="appbackground">
-			<!-- <div class="appbody"> -->
+		<div class="container-fluid appbackground">
+			<div class="container appbody">
 	    placeholder
 			<characters></characters>
 			<spell-book></spell-book>
 			<prepared/>
-			<!-- </div> -->
+			</div>
 		</div>
   </div>
 </template>
@@ -34,15 +34,14 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-	background-color: black
 }
 .appbackground {
-	height: 100%;
-	background-color: white;
+	height: 100vh;
+	background-color: black;
 
 }
 .appbody {
+	height: 100vh;
 	width: 80%;
 	background-color: white;
 }
