@@ -3,6 +3,7 @@
     placeholder
 		<characters></characters>
 		<spell-book></spell-book>
+		<prepared/>
   </div>
 </template>
 
@@ -10,11 +11,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Characters from './components/Characters.vue';
 import SpellBook from './components/SpellBook.vue';
+import Prepared from './components/Prepared.vue';
 
 @Component({
   components: {
 		Characters,
 		SpellBook,
+		Prepared,
   },
 })
 export default class App extends Vue {}
