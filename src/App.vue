@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     placeholder
-		
+		<characters></characters>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import Characters from './components/Characters.vue';
 
 @Component({
   components: {
-    HelloWorld,
+		Characters,
   },
 })
 export default class App extends Vue {}
