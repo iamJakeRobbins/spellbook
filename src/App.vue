@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-		<div class="container-fluid appbackground">
-			<div class="header">
-			<header/>
-			</div>
+		<!-- <div class="container-fluid appbackground"> -->
 
-			<div class="container appbody">
+
+
+
+			<!-- <div class="container appbody"> -->
 	    placeholder
+			<page-header></page-header>
 			<characters></characters>
 			<spell-book></spell-book>
 			<prepared/>
-			</div>
-		</div>
+			<!-- </div> -->
+		<!-- </div> -->
   </div>
 </template>
 
@@ -20,14 +21,14 @@ import { Component, Vue } from 'vue-property-decorator';
 import Characters from './components/Characters.vue';
 import SpellBook from './components/SpellBook.vue';
 import Prepared from './components/Prepared.vue';
-import Header from './components/Header.vue';
+import PageHeader from './components/Header.vue';
 
 @Component({
   components: {
 		Characters,
 		SpellBook,
 		Prepared,
-		Header,
+		PageHeader,
   },
 })
 export default class App extends Vue {}
