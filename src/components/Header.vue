@@ -1,18 +1,27 @@
 <template lang="html">
 	<div class="">
-		<nav id="navigation" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
 
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        </ul>
     </div>
-  </div>
-	<span class="navbar-text-">
-      Navbar text with an inline element
-    </span>
+    <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#">My SpellBook</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Account</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 	</div>
 
