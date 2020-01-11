@@ -15,7 +15,7 @@
 				<li>And more!</li>
 				<li>...someday</li>
 			</ul>
-			<button class="btn btn-dark" type="button" name="button">
+			<button class="btn btn-dark" type="button" name="button" @click="loginNow">
 				Login
 			</button>
 			<p>or</p>
@@ -27,8 +27,15 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class Home extends Vue {
+loginNow() {
+	console.log('here')
+}
 }
 </script>
 
