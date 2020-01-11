@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="">
+  <div id="body">
   	This is our new home page and we're going to replace the views folder completely
   </div>
 </template>
@@ -10,4 +10,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+#body {
+	background-image: url('../assets/background_books.jpg');
+	height: 100vw;
+}
 </style>

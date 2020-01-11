@@ -1,30 +1,19 @@
 <template>
   <div id="app">
 		<page-header></page-header>
-			<!-- <characters></characters>
-			<spell-book></spell-book>
-			<prepared/>
-			<choose-character/> -->
-			<router-link to="/char">CharacterPage</router-link>
-			<router-view/>
+		<!-- <router-link to="/char">CharacterPage</router-link> -->
+		<router-view/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Characters from './components/Characters.vue';
-import SpellBook from './components/SpellBook.vue';
-import Prepared from './components/Prepared.vue';
 import PageHeader from './components/Header.vue';
-import ChooseCharacter from './routes/ChooseCharacter.vue';
+
 
 @Component({
   components: {
-		Characters,
-		SpellBook,
-		Prepared,
 		PageHeader,
-		ChooseCharacter,
   },
 })
 export default class App extends Vue {}
