@@ -1,19 +1,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-import ChooseCharacter from '../routes/ChooseCharacter.vue'
+import ChooseCharacter from '/Users/davidrobbins/coding/mythicSites/myspellbook/myspellbook/src/routes/ChooseCharacter.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/step',
     name: 'home',
     component: Home,
   },
   {
     path: '/char',
-    name: 'Character Choice',
+    name: 'CharacterChoice',
 		component: ChooseCharacter,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
