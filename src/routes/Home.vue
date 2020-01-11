@@ -34,8 +34,8 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class Home extends Vue {
 loginNow(): void
 {
+	//routing directly to character list for now, need to route to login page
 	this.$router.push('char')
-	console.log('here')
 }
 }
 </script>
