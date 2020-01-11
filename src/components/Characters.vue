@@ -1,6 +1,6 @@
 <template lang="html">
 	<div class="">
-	this is going to be the character selection component	
+	this is going to be the character selection component
 	</div>
 
 </template>
