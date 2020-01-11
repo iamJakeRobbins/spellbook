@@ -28,12 +28,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Home extends Vue {
-loginNow() {
+loginNow(): void
+{
+	this.$router.push('char')
 	console.log('here')
 }
 }
