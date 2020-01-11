@@ -3,11 +3,27 @@
 		<div id="home_main"class="container rounded">
 			<div class="textfield">
 			<h2>The Wizard's library</h2>
+			<p>
+				A companion app for Pathfinder, use the Wizard's library to manage all of your spell-casting needs!
+			</p>
+			<ul>
+				<li>Add an unlimited number of characters</li>
+				<li>Manage your spellbooks</li>
+				<li>Prepare spells</li>
+				<li>Add spells to your library</li>
+				<li>Browse spells with direct links to the pfsrd!</li>
+				<li>And more!</li>
+				<li>...someday</li>
+			</ul>
+			<button class="btn btn-dark" type="button" name="button">
+				Login
+			</button>
+			<p>or</p>
+			<button class="btn btn-dark" type="button" name="button">
+				Create an Account Now
+			</button>
 			</div>
-
-
 		</div>
-
   </div>
 </template>
 
