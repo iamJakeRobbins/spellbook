@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
-import ChooseCharacter from '/Users/davidrobbins/coding/mythicSites/myspellbook/myspellbook/src/routes/ChooseCharacter.vue';
+import Home from '@/routes/Home.vue';
+import ChooseCharacter from '@/routes/ChooseCharacter.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/step',
+    path: '/',
     name: 'home',
     component: Home,
   },
