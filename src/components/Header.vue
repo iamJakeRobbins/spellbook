@@ -32,22 +32,7 @@ export default {
 }
 </script>
 <style lang='css' scoped>
-/* .head{
-	position:fixed;
-  left:0;
-  top:0;
-  width:100vw;
-  z-index:200;
-  height:100px;
-	background-color: blue;
 
-} */
-.navbar-nav {
-    float:none;
-    /* margin:0 auto;
-    display: block; */
-    text-align: center;
-}
 
 
 </style>
