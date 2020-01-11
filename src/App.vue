@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-		<page-header></page-header>
+		<!-- <page-header></page-header>
 			<characters></characters>
 			<spell-book></spell-book>
 			<prepared/>
+			<choose-character/> -->
+			<router-link to="/char">CharacterPage</router-link>
   </div>
 </template>
 
@@ -13,6 +15,7 @@ import Characters from './components/Characters.vue';
 import SpellBook from './components/SpellBook.vue';
 import Prepared from './components/Prepared.vue';
 import PageHeader from './components/Header.vue';
+import ChooseCharacter from './routes/ChooseCharacter.vue';
 
 @Component({
   components: {
@@ -20,6 +23,7 @@ import PageHeader from './components/Header.vue';
 		SpellBook,
 		Prepared,
 		PageHeader,
+		ChooseCharacter,
   },
 })
 export default class App extends Vue {}
