@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+					<page-header></page-header>
 		<!-- <div class="container-fluid appbackground"> -->
 
 
@@ -7,7 +8,7 @@
 
 			<!-- <div class="container appbody"> -->
 	    placeholder
-			<page-header></page-header>
+
 			<characters></characters>
 			<spell-book></spell-book>
 			<prepared/>
