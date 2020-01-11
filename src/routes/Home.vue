@@ -1,7 +1,11 @@
 <template lang="html">
   <div id="body">
-		<div id="home_main"class="container fluid">
-				This is our new home page and we're going to replace the views folder completely
+		<div id="home_main"class="container rounded">
+			<div class="textfield">
+			<h2>The Wizard's library</h2>
+			</div>
+
+
 		</div>
 
   </div>
@@ -19,7 +23,11 @@ export default {
 	height: 100vh;
 }
 #home_main {
-	background-color: white;
+	background-color: lightgray;
 	height:100vh;
+	width:60vw;
+}
+.textfield {
+	padding-top: 10px;
 }
 </style>
