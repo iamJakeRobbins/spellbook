@@ -5,8 +5,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+		characters:[] = [],
   },
   mutations: {
+		addCharacters(state, payload) {
+			payload.forEach(e => {
+				state.characters.push(e.name);
+			})
+		},
   },
   actions: {
   },

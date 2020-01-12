@@ -30,6 +30,7 @@ export default class ChooseCharacter extends Vue {
 
 	addCharacters(data: object): void
 	{
+		console.log('alive');
 		this.$store.commit('addCharacters', data);
 	}
 
