@@ -9,7 +9,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import PageHeader from './components/Header.vue';
 
-
 @Component({
   components: {
 		PageHeader,

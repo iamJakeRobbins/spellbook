@@ -31,9 +31,11 @@ export default class ChooseCharacter extends Vue {
 
 	async mounted(): Promise<any>
 	{
-		let data = await fetch(`${this.url}chars`);
-		let json = await data.json()
-		this.addCharacters(json);
+		if (this.characters.length === 0) {
+			let data = await fetch(`${this.url}chars`);
+			let json = await data.json()
+			this.addCharacters(json);
+		}
 	}
 
 	addCharacters(data: object): void
