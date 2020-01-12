@@ -10,7 +10,10 @@ export default new Vuex.Store({
   mutations: {
 		addCharacters(state, payload) {
 			payload.forEach(e => {
-				state.characters.push(e.name);
+				let obj = {
+					id: e.id,
+					name: e.name}
+				state.characters.push(obj);
 			})
 		},
   },
