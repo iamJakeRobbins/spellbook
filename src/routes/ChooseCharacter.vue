@@ -47,6 +47,8 @@ export default class ChooseCharacter extends Vue {
 	{
 		let val:number = e.target.value;
 		this.$store.commit('updateSelectedCharacter', val);
+		//update route to head to spellbook proper
+		this.$router.push('/spellbook');
 	}
 
 }

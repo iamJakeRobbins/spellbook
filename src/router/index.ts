@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '@/routes/Home.vue';
 import ChooseCharacter from '@/routes/ChooseCharacter.vue';
+import Spellbook from '@/routes/Spellbook.vue';
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,11 @@ const routes = [
     name: 'CharacterChoice',
 		component: ChooseCharacter,
   },
+	{
+		path: '/spellbook',
+		name: 'Spellbook',
+		component: Spellbook,
+	},
 ];
 
 const router = new VueRouter({
