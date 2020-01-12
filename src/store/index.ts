@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-		characters:[] = [],
+		selectedCharacter: null,
+		characters: [] = [],
   },
   mutations: {
 		addCharacters(state, payload) {
@@ -15,6 +16,12 @@ export default new Vuex.Store({
 					name: e.name}
 				state.characters.push(obj);
 			})
+		},
+		updateSelectedCharacter(state, payload) {
+			if(typeof(payload) !== 'number') {
+				payload = parseInt(payload);
+			}
+			state.selectedCharacter = payload;
 		},
   },
   actions: {
