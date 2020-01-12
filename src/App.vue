@@ -1,7 +1,6 @@
 <template>
   <div id="app">
 		<page-header></page-header>
-		<!-- <router-link to="/char">CharacterPage</router-link> -->
 		<router-view/>
   </div>
 </template>
