@@ -19,13 +19,20 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class ChooseCharacter extends Vue {
 	userName: string = "Jake";
+	url: string = `http://localhost:3000/`;
 
-	async mounted()
+	async mounted(): Promise<any>
 	{
-		let data = await fetch(`http://localhost:3000/`);
+		let data = await fetch(`${this.url}chars`);
 		let json = await data.json()
-		console.log(json)
+		this.addCharacters(json);
 	}
+
+	addCharacters(data: object): void
+	{
+		this.$store.commit('addCharacters', data);
+	}
+
 }
 </script>
 
