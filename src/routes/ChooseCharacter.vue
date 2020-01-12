@@ -8,6 +8,9 @@
 			<p>
 				Your casters are displayed below, select one to view their spellbooks
 			</p>
+			<div v-for="char in characters">
+				<button class="btn btn-dark">{{char}}</button>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -21,6 +24,12 @@ export default class ChooseCharacter extends Vue {
 	userName: string = "Jake";
 	url: string = `http://localhost:3000/`;
 
+	get characters()
+	{
+		console.log(this.$store.state)
+		return this.$store.state.characters;
+	}
+
 	async mounted(): Promise<any>
 	{
 		let data = await fetch(`${this.url}chars`);
@@ -30,7 +39,6 @@ export default class ChooseCharacter extends Vue {
 
 	addCharacters(data: object): void
 	{
-		console.log('alive');
 		this.$store.commit('addCharacters', data);
 	}
 
