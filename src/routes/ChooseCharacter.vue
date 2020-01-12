@@ -9,7 +9,7 @@
 				Your casters are displayed below, select one to view their spellbooks
 			</p>
 			<div v-for="char in characters">
-				<button class="btn btn-dark">{{char}}</button>
+				<button class="btn btn-dark" :value="char.id" @click="selectCharacter">{{char.name}}</button>
 			</div>
 			</div>
 		</div>
@@ -26,7 +26,6 @@ export default class ChooseCharacter extends Vue {
 
 	get characters()
 	{
-		console.log(this.$store.state)
 		return this.$store.state.characters;
 	}
 
@@ -40,6 +39,12 @@ export default class ChooseCharacter extends Vue {
 	addCharacters(data: object): void
 	{
 		this.$store.commit('addCharacters', data);
+	}
+
+	selectCharacter(e:any)
+	{
+		let val:number = e.target.value;
+		this.$store.commit('updateSelectedCharacter', val);
 	}
 
 }
