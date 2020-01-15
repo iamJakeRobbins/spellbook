@@ -22,6 +22,11 @@ const routes = [
 		name: 'Spellbook',
 		component: Spellbook,
 	},
+	{
+		path: '/newCaster',
+		name: 'NewCaster',
+		component: NewCharacter,
+	}
 ];
 
 const router = new VueRouter({
