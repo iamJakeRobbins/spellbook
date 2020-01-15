@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '@/routes/Home.vue';
 import ChooseCharacter from '@/routes/ChooseCharacter.vue';
 import Spellbook from '@/routes/Spellbook.vue';
+import NewCharacter from '@/routes/NewCharacter.vue';
 
 Vue.use(VueRouter);
 
@@ -23,7 +24,7 @@ const routes = [
 		component: Spellbook,
 	},
 	{
-		path: '/newCaster',
+		path: '/addCharacter',
 		name: 'NewCaster',
 		component: NewCharacter,
 	}

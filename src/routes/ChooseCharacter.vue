@@ -36,7 +36,7 @@ export default class ChooseCharacter extends Vue {
 
 	newCaster()
 	{
-		console.log('ayyyy')
+		this.$router.push('/addCharacter');
 	}
 
 	async mounted(): Promise<any>
