@@ -8,8 +8,13 @@
 			<p>
 				Your casters are displayed below, select one to view their spellbooks
 			</p>
-			<div v-for="char in characters">
-				<button class="btn btn-dark" :value="char.id" @click="selectCharacter">{{char.name}}</button>
+			<div class="aRrow" v-for="char in characters">
+				<span class="nameSpan" @click="selectCharacter">{{char.name}}</span>
+				<button class="btn btn-success" :value="char.id">edit</button>
+				<button class="btn btn-danger" :value="char.id">delete</button>
+			</div>
+			<div class="aRow">
+				<button class="btn btn-primary">Add A Caster</button>
 			</div>
 			</div>
 		</div>
@@ -67,5 +72,18 @@ export default class ChooseCharacter extends Vue {
 }
 .textfield {
 	padding-top: 10px;
+}
+button {
+	margin-left: .25em;
+	margin-right: .25em;
+}
+.nameSpan {
+	border-right: 2px solid black;
+	padding-right: .25em;
+}
+.aRow {
+	padding-top: .5em;
+	padding-bottom: .5em;
+	text-align: center;
 }
 </style>
