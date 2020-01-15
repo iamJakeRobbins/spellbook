@@ -14,7 +14,7 @@
 				<button class="btn btn-danger" :value="char.id">delete</button>
 			</div>
 			<div class="aRow">
-				<button class="btn btn-primary">Add A Caster</button>
+				<button class="btn btn-primary" @click="newCaster">Add A Caster</button>
 			</div>
 			</div>
 		</div>
@@ -32,6 +32,11 @@ export default class ChooseCharacter extends Vue {
 	get characters()
 	{
 		return this.$store.state.characters;
+	}
+
+	newCaster()
+	{
+		console.log('ayyyy')
 	}
 
 	async mounted(): Promise<any>
