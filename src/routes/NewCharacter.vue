@@ -1,6 +1,11 @@
 <template lang="html">
   <div class="">
-  	hello world
+  	<!-- char name -->
+		<input type="text" name="" value="">
+		<!-- level -->
+		<input type="number" name="" value="">
+		<!-- class -->
+		<input type="text" name="" value="">
   </div>
 </template>
 
