@@ -2,7 +2,7 @@
   <div id="body">
 		<div class="aRow">
 			<label>Name: </label>
-			<input id='charNameField' type="text" v-bind:value="charName">
+			<input type="text" v-bind:value="charName" @input="updateCharName($event)">
 		</div>
 		<div class="aRow">
 			<label>Character Level: </label>
@@ -29,11 +29,16 @@ export default class NewCharacter extends Vue {
 	charId:any =  null;
 	url: string = `http://localhost:3000/`;
 
+	updateCharName($event) {
+		// console.log($event.target.value)
+		this.charName = $event.target.value;
+	}
+
 	submit(e)
 	{
 		let name = document.getElementById('charNameField')
-		console.log(name.value)
 		console.log(this.charName);
+		console.log(this.level)
 		// if(e.target.value) {
 		// 	this.updateCharacter();
 		// } else {
