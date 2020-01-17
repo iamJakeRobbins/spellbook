@@ -18,10 +18,13 @@
 		</div>
 		<div class="aRow">
 			<label>Character Class: </label>
-			<input
+			<!-- <input
 			type="text"
 			:value='charClass'
-			@input="updateCharClass($event)">
+			@input="updateCharClass($event)"> -->
+			<select>
+			<option value=></option> </select>
+
 		</div>
 		<div class="aRow">
 			<button class="btn btn-primary" :value="charId" @click='submitCharacter'>Add Character</button>
@@ -74,9 +77,11 @@ export default class NewCharacter extends Vue {
 
 }
 
-	mounted()
+	async mounted()
 	{
 		//fetch select options for class list
+		let data = fetch(`${this.url}classDetails`);
+		console.log(data);
 		console.log('here');
 	}
 }
