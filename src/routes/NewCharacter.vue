@@ -78,14 +78,15 @@ export default class NewCharacter extends Vue {
 
 	addClassesToStore(data)
 	{
-		this.$store.commit('addClassesToStore', data);
+		this.$store.commit('getClasses', data);
 	}
 
 	async mounted()
 	{
 		//fetch select options for class list
-		let data = fetch(`${this.url}classDetails`);
-		this.addClassesToStore(data);
+		let data = await fetch(`${this.url}classDetails`);
+		let json = await data.json();
+		this.addClassesToStore(json);
 	}
 }
 </script>

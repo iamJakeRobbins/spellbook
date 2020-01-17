@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
 		selectedCharacter: null,
 		characters: [] = [],
+		classes: new Object,
   },
   mutations: {
 		addCharacters(state, payload) {
@@ -23,6 +24,13 @@ export default new Vuex.Store({
 			}
 			state.selectedCharacter = payload;
 		},
+		getClasses(state, payload) {
+			let ob = new Object;
+			payload.forEach((e, i) => {
+				ob[e.id] = e.description
+			})
+			state.classes = ob;
+		}
   },
   actions: {
   },
