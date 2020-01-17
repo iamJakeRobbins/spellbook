@@ -43,6 +43,11 @@ export default class NewCharacter extends Vue {
 	charId:any =  null;
 	url: string = `http://localhost:3000/`;
 
+	get classDetails()
+	{
+		return this.$store.state.classes;
+	}
+
 	updateCharName($event)
 	{
 		this.charName = $event.target.value;
@@ -83,10 +88,11 @@ export default class NewCharacter extends Vue {
 
 	async mounted()
 	{
-		//fetch select options for class list
+		if(!Object.keys(this.classDetails).length) {
 		let data = await fetch(`${this.url}classDetails`);
 		let json = await data.json();
 		this.addClassesToStore(json);
+		}
 	}
 }
 </script>
