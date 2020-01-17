@@ -24,7 +24,7 @@
 			@input="updateCharClass($event)">
 		</div>
 		<div class="aRow">
-			<button class="btn btn-primary" :value="charId" @click='submit'>Add Character</button>
+			<button class="btn btn-primary" :value="charId" @click='submitCharacter'>Add Character</button>
 		</div>
   </div>
 </template>
@@ -55,23 +55,16 @@ export default class NewCharacter extends Vue {
 		this.charClass = e.target.value;
 	}
 
-	submit(e)
-	{
-		if(e.target.value) {
-			this.updateCharacter();
-		} else {
-			this.submitCharacter();
-		}
-	}
-
 	async submitCharacter()
 	{
-		let data = {
+		let data:object = {
 			name: this.charName,
 			level: this.charLevel,
 			class: this.charClass,
-		}
-		let request = await fetch(`${this.url}submitCharacter`, {
+			id = this.charId,
+		};
+		let route = this.charId ? `${this.url}submitCharacter` : `${this.url}updateCharacter`
+		let request = await fetch(`${route}`, {
 		  method: 'POST', // or 'PUT'
 		  headers: {
 		    'Content-Type': 'application/json',
@@ -80,13 +73,6 @@ export default class NewCharacter extends Vue {
 		})
 
 }
-
-
-	updateCharacter()
-	{
-		// doesn't need to do anything for now;
-		console.log('we in it')
-	}
 
 	mounted()
 	{
