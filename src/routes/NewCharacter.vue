@@ -45,7 +45,7 @@ export default class NewCharacter extends Vue {
 			level: this.level,
 			class: this.charClass,
 		}
-		let request = await fetch(`${this.url}/submitCharacter`, {
+		let request = await fetch(`${this.url}submitCharacter`, {
 		  method: 'POST', // or 'PUT'
 		  headers: {
 		    'Content-Type': 'application/json',
