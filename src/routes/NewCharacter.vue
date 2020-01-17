@@ -6,11 +6,16 @@
 		</div>
 		<div class="aRow">
 			<label>Character Level: </label>
-			<input type="number" min="1" max="20" :value='level'>
+			<input
+			type="number"
+			min="1"
+			max="20"
+			:value='charLevel'
+			@input=updateCharLevel($event)>
 		</div>
 		<div class="aRow">
 			<label>Character Class: </label>
-			<input type="text" name="" :value='charClass'>
+			<input type="text" name="" :value='charClass' @input="updateCharClass($event)">
 		</div>
 		<div class="aRow">
 			<button class="btn btn-primary" :value="charId" @click='submit'>Add Character</button>
@@ -23,34 +28,41 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class NewCharacter extends Vue {
-	charName = '';
+	charName:string = '';
 	charClass:string = '';
-	level:number = 0;
+	charLevel:number = 0;
 	charId:any =  null;
 	url: string = `http://localhost:3000/`;
 
-	updateCharName($event) {
-		// console.log($event.target.value)
+	updateCharName($event)
+	{
 		this.charName = $event.target.value;
+	}
+
+	updateCharLevel(e)
+	{
+		this.charLevel = e.target.value;
+	}
+
+	updateCharClass(e)
+	{
+		this.charClass = e.target.value;
 	}
 
 	submit(e)
 	{
-		let name = document.getElementById('charNameField')
-		console.log(this.charName);
-		console.log(this.level)
-		// if(e.target.value) {
-		// 	this.updateCharacter();
-		// } else {
-		// 	this.submitCharacter();
-		// }
+		if(e.target.value) {
+			this.updateCharacter();
+		} else {
+			this.submitCharacter();
+		}
 	}
 
 	async submitCharacter()
 	{
 		let data = {
 			name: this.charName,
-			level: this.level,
+			level: this.charLevel,
 			class: this.charClass,
 		}
 		let request = await fetch(`${this.url}submitCharacter`, {
