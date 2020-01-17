@@ -2,7 +2,10 @@
   <div id="body">
 		<div class="aRow">
 			<label>Name: </label>
-			<input type="text" v-bind:value="charName" @input="updateCharName($event)">
+			<input
+			type="text"
+			v-bind:value="charName"
+			@input="updateCharName($event)">
 		</div>
 		<div class="aRow">
 			<label>Character Level: </label>
@@ -15,7 +18,10 @@
 		</div>
 		<div class="aRow">
 			<label>Character Class: </label>
-			<input type="text" name="" :value='charClass' @input="updateCharClass($event)">
+			<input
+			type="text"
+			:value='charClass'
+			@input="updateCharClass($event)">
 		</div>
 		<div class="aRow">
 			<button class="btn btn-primary" :value="charId" @click='submit'>Add Character</button>
@@ -84,6 +90,7 @@ export default class NewCharacter extends Vue {
 
 	mounted()
 	{
+		//fetch select options for class list
 		console.log('here');
 	}
 }
