@@ -16,14 +16,16 @@
 			:value='charLevel'
 			@input=updateCharLevel($event)>
 		</div>
-		<div class="aRow">
+		<div class="aRow" v-if="classDetailsSet">
 			<label>Character Class: </label>
 			<!-- <input
 			type="text"
 			:value='charClass'
 			@input="updateCharClass($event)"> -->
+
 			<select>
-			<option value=></option> </select>
+				<option v-for="(item,key,index) in classDetails" :id="key"> {{item}}</option>
+			</select>
 
 		</div>
 		<div class="aRow">
@@ -42,10 +44,14 @@ export default class NewCharacter extends Vue {
 	charLevel:number = 0;
 	charId:any =  null;
 	url: string = `http://localhost:3000/`;
+	classDetailsSet = false;
 
 	get classDetails()
 	{
-		return this.$store.state.classes;
+		if(this.$store.state.classes) {
+			this.classDetailsSet = true;
+			return this.$store.state.classes;
+		}
 	}
 
 	updateCharName($event)
