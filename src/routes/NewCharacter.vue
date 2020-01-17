@@ -2,7 +2,7 @@
   <div id="body">
 		<div class="aRow">
 			<label>Name: </label>
-			<input type="text" name="" :value='name'>
+			<input id='charNameField' type="text" v-bind:value="charName">
 		</div>
 		<div class="aRow">
 			<label>Character Level: </label>
@@ -13,7 +13,7 @@
 			<input type="text" name="" :value='charClass'>
 		</div>
 		<div class="aRow">
-			<button class="btn btn-primary" :value="charId" @click='submitCharacter'>Add Character</button>
+			<button class="btn btn-primary" :value="charId" @click='submit'>Add Character</button>
 		</div>
   </div>
 </template>
@@ -23,25 +23,28 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class NewCharacter extends Vue {
-	name:string = '';
+	charName = '';
 	charClass:string = '';
 	level:number = 0;
 	charId:any =  null;
 	url: string = `http://localhost:3000/`;
 
-	submitCharacter(e)
+	submit(e)
 	{
-		if(e.target.value) {
-			this.updateCharacter();
-		} else {
-			this.submitCharacter();
-		}
+		let name = document.getElementById('charNameField')
+		console.log(name.value)
+		console.log(this.charName);
+		// if(e.target.value) {
+		// 	this.updateCharacter();
+		// } else {
+		// 	this.submitCharacter();
+		// }
 	}
 
 	async submitCharacter()
 	{
 		let data = {
-			name: this.name,
+			name: this.charName,
 			level: this.level,
 			class: this.charClass,
 		}
