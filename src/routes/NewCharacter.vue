@@ -61,7 +61,7 @@ export default class NewCharacter extends Vue {
 			name: this.charName,
 			level: this.charLevel,
 			class: this.charClass,
-			id = this.charId,
+			id: this.charId,
 		};
 		let route = this.charId ? `${this.url}submitCharacter` : `${this.url}updateCharacter`
 		let request = await fetch(`${route}`, {
