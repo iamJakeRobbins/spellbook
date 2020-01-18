@@ -10,8 +10,8 @@ export default new Vuex.Store({
 		classes: new Object(),
   },
   mutations: {
-		addCharacters(state:any, payload) {
-			payload.forEach((e:any) => {
+		addCharacters(state: any, payload) {
+			payload.forEach((e: any) => {
 				const obj = {
 					id: e.id,
 					name: e.name};
@@ -19,16 +19,16 @@ export default new Vuex.Store({
 			});
 		},
 
-		updateSelectedCharacter(state:any, payload) {
+		updateSelectedCharacter(state: any, payload) {
 			if (typeof(payload) !== 'number') {
 				payload = parseInt(payload, 10);
 			}
 			state.selectedCharacter = payload;
 		},
 
-		getClasses(state:any, payload) {
-			const ob:any = new Object();
-			payload.forEach((e:any) => {
+		getClasses(state: any, payload) {
+			const ob: any = new Object();
+			payload.forEach((e: any) => {
 				ob[e.id] = e.description;
 			});
 			state.classes = ob;
