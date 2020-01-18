@@ -18,11 +18,6 @@
 		</div>
 		<div class="aRow" v-if="classDetailsSet">
 			<label>Character Class: </label>
-			<!-- <input
-			type="text"
-			:value='charClass'
-			@input="updateCharClass($event)"> -->
-
 			<select @change="updateCharClass($event)">
 				<option value="0">Select...</option>
 				<option
