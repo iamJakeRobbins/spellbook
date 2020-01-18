@@ -27,7 +27,7 @@ const routes = [
 		path: '/addCharacter',
 		name: 'NewCaster',
 		component: NewCharacter,
-	}
+	},
 ];
 
 const router = new VueRouter({
