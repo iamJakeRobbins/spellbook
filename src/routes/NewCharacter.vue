@@ -97,12 +97,16 @@ export default class NewCharacter extends Vue {
 				id: this.selectedCharacter,
 			}),
 		});
-		const json = await data.json();
-		this.charName = json[0].name;
-		this.charClass = json[0].class;
-		this.charLevel = json[0].level;
-		this.charId = json[0].id;
 
+		const json = await data.json();
+		this.syncCharInfo(json[0]);
+	}
+
+	private syncCharInfo(data: any): void {
+		this.charName = data.name;
+		this.charClass = data.class;
+		this.charLevel = data.level;
+		this.charId = data.id;
 	}
 
 	private async submitCharacter(): Promise<any> {
