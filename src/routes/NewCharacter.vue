@@ -69,7 +69,10 @@ export default class NewCharacter extends Vue {
 	}
 
 	get selectedCharacter(): number|null {
-		return this.$store.state.selectCharacter;
+		if(this.$store.state.selectedCharacter) {
+			return this.$store.state.selectedCharacter;
+		}
+		return null;
 	}
 
 	private updateCharName($event: any): void {
@@ -82,6 +85,12 @@ export default class NewCharacter extends Vue {
 
 	private updateCharClass(e: any): void {
 		this.charClass = parseInt(e.target.value, 10);
+	}
+
+	private async fetchCharacterInfo() {
+		const data = await fetch(`${this.url}getSingleCharacter`);
+		const json = await data.json();
+		console.log(json);
 	}
 
 	private async submitCharacter(): Promise<any> {
@@ -112,17 +121,14 @@ export default class NewCharacter extends Vue {
 	}
 
 	private async mounted(): Promise<any> {
-		console.log(this.selectedCharacter)
-		if (this.selectedCharacter) {
-			console.log('yep');
-		}
+		
 		if (!Object.keys(this.classDetails).length) {
 		const data = await fetch(`${this.url}classDetails`);
 		const json = await data.json();
 		this.addClassesToStore(<JSON> json);
 		}
 		if (this.selectedCharacter) {
-			console.log('yep');
+			this.fetchCharacterInfo();
 		}
 	}
 }
