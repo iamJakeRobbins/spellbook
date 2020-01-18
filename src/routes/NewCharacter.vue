@@ -25,7 +25,6 @@
 				:id="key"
 				:value="key"> {{item}}</option>
 			</select>
-
 		</div>
 		<div class="aRow">
 			<button class="btn btn-primary" :value="charId" @click='submitCharacter'>Add Character</button>
@@ -77,7 +76,7 @@ export default class NewCharacter extends Vue {
 			class: this.charClass,
 			id: this.charId,
 		};
-console.log(data);
+		//need to add validation before submitting
 		let route:string = this.charId ? `${this.url}updateCharacter` : `${this.url}submitCharacter`
 		let request = await fetch(`${route}`, {
 		  method: 'POST',
@@ -86,7 +85,7 @@ console.log(data);
 		  },
 		  body: JSON.stringify(data),
 		})
-}
+	}
 
 	addClassesToStore(data)
 	{
