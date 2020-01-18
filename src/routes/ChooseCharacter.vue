@@ -1,6 +1,6 @@
 <template lang="html">
 	<div id="body">
-		<div id="home_main"class="container rounded">
+		<div id="home_main" class="container rounded">
 			<div class="textfield">
 			<p>
 				Welcome to your Library, {{userName}}!
@@ -12,7 +12,8 @@
 				<span class="nameSpan" @click="selectCharacter">{{char.name}}</span>
 				<button
 				class="btn btn-success"
-				:value="char.id">
+				:value="char.id"
+				@click="editChar">
 				Edit
 			</button>
 				<button
@@ -49,6 +50,12 @@ export default class ChooseCharacter extends Vue {
 		const val: number = e.target.value;
 		this.$store.commit('updateSelectedCharacter', val);
 		this.$router.push('/spellbook');
+	}
+
+	private editChar(e: any): void {
+		const id: number = parseInt(e.target.value, 10);
+		this.$store.commit('updateSelectedCharacter', id);
+		this.newCaster();
 	}
 
 	private newCaster(): void {
