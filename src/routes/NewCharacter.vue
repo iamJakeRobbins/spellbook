@@ -23,8 +23,12 @@
 			:value='charClass'
 			@input="updateCharClass($event)"> -->
 
-			<select>
-				<option v-for="(item,key,index) in classDetails" :id="key"> {{item}}</option>
+			<select @change="updateCharClass($event)">
+				<option value="0">Select...</option>
+				<option
+				v-for="(item,key,index) in classDetails"
+				:id="key"
+				:value="key"> {{item}}</option>
 			</select>
 
 		</div>
@@ -61,12 +65,13 @@ export default class NewCharacter extends Vue {
 
 	updateCharLevel(e)
 	{
-		this.charLevel = e.target.value;
+		this.charLevel = parseInt(e.target.value);
 	}
 
 	updateCharClass(e)
 	{
-		this.charClass = e.target.value;
+		console.log(e.target.value)
+		this.charClass = parseInt(e.target.value);
 	}
 
 	async submitCharacter()
@@ -77,7 +82,7 @@ export default class NewCharacter extends Vue {
 			class: this.charClass,
 			id: this.charId,
 		};
-
+console.log(data);
 		let route:string = this.charId ? `${this.url}updateCharacter` : `${this.url}submitCharacter`
 		let request = await fetch(`${route}`, {
 		  method: 'POST',
