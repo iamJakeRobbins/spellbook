@@ -37,65 +37,59 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class NewCharacter extends Vue {
-	charName: string = '';
-	charClass: number = 0;
-	charLevel: number = 0;
-	charId: any =  null;
-	url: string = `http://localhost:3000/`;
-	classDetailsSet: boolean = false;
+	private charName: string = '';
+	private charClass: number = 0;
+	private charLevel: number = 0;
+	private charId: any =  null;
+	private url: string = `http://localhost:3000/`;
+	private classDetailsSet: boolean = false;
 
-	get classDetails()
-	{
-		if(this.$store.state.classes) {
+	get classDetails(): object {
+		if (this.$store.state.classes) {
 			this.classDetailsSet = true;
 			return this.$store.state.classes;
 		}
+		return {};
 	}
 
-	updateCharName($event: any)
-	{
+	private updateCharName($event: any): void {
 		this.charName = $event.target.value;
 	}
 
-	updateCharLevel(e: any)
-	{
-		this.charLevel = parseInt(e.target.value);
+	private updateCharLevel(e: any): void {
+		this.charLevel = parseInt(e.target.value, 10);
 	}
 
-	updateCharClass(e: any)
-	{
-		this.charClass = parseInt(e.target.value);
+	private updateCharClass(e: any): void {
+		this.charClass = parseInt(e.target.value, 10);
 	}
 
-	async submitCharacter()
-	{
-		let data:object = {
+	private async submitCharacter(): Promise<any> {
+		const data: object = {
 			name: this.charName,
 			level: this.charLevel,
 			class: this.charClass,
 			id: this.charId,
 		};
-		//need to add validation before submitting
-		let route: string = this.charId ? `${this.url}updateCharacter` : `${this.url}submitCharacter`
-		let request = await fetch(`${route}`, {
+		// need to add validation before submitting
+		const route: string = this.charId ? `${this.url}updateCharacter` : `${this.url}submitCharacter`;
+		const request = await fetch(`${route}`, {
 		  method: 'POST',
 		  headers: {
 		    'Content-Type': 'application/json',
 		  },
 		  body: JSON.stringify(data),
-		})
+		});
 	}
 
-	addClassesToStore(data: JSON)
-	{
+	private addClassesToStore(data: JSON): void {
 		this.$store.commit('getClasses', data);
 	}
 
-	async mounted()
-	{
-		if(!Object.keys(this.classDetails).length) {
-		let data = await fetch(`${this.url}classDetails`);
-		let json = await data.json();
+	private async mounted(): Promise<any> {
+		if (!Object.keys(this.classDetails).length) {
+		const data = await fetch(`${this.url}classDetails`);
+		const json = await data.json();
 		this.addClassesToStore(<JSON> json);
 		}
 	}
