@@ -42,7 +42,7 @@ export default class NewCharacter extends Vue {
 	charLevel:number = 0;
 	charId:any =  null;
 	url: string = `http://localhost:3000/`;
-	classDetailsSet = false;
+	classDetailsSet:boolean = false;
 
 	get classDetails()
 	{
