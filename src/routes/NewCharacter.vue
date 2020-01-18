@@ -68,6 +68,10 @@ export default class NewCharacter extends Vue {
 		return {};
 	}
 
+	get selectedCharacter(): number|null {
+		return this.$store.state.selectCharacter;
+	}
+
 	private updateCharName($event: any): void {
 		this.charName = $event.target.value;
 	}
@@ -112,6 +116,9 @@ export default class NewCharacter extends Vue {
 		const data = await fetch(`${this.url}classDetails`);
 		const json = await data.json();
 		this.addClassesToStore(<JSON> json);
+		}
+		if (this.selectedCharacter) {
+			console.log('yep');
 		}
 	}
 }
