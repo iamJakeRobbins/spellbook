@@ -88,7 +88,14 @@ export default class NewCharacter extends Vue {
 	}
 
 	private async fetchCharacterInfo() {
-		const data = await fetch(`${this.url}getSingleCharacter`);
+		const data = await fetch(`${this.url}getSingleCharacter`,  {
+			method: 'POST',
+		  headers: {
+		    'Content-Type': 'application/json',
+		  },
+		  body: JSON.stringify(this.selectedCharacter),
+		});
+		
 		const json = await data.json();
 		console.log(json);
 	}
@@ -121,7 +128,7 @@ export default class NewCharacter extends Vue {
 	}
 
 	private async mounted(): Promise<any> {
-		
+
 		if (!Object.keys(this.classDetails).length) {
 		const data = await fetch(`${this.url}classDetails`);
 		const json = await data.json();
