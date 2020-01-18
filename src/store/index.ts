@@ -21,10 +21,15 @@ export default new Vuex.Store({
 		},
 
 		updateSelectedCharacter(state: any, payload) {
-			if (typeof(payload) !== 'number') {
-				payload = parseInt(payload, 10);
+			if (payload) {
+				if (typeof(payload) !== 'number') {
+					payload = parseInt(payload, 10);
+				}
+				state.selectedCharacter = payload;
+			} else {
+				state.selectedCharacter = null;
 			}
-			state.selectedCharacter = payload;
+
 		},
 
 		getClasses(state: any, payload) {

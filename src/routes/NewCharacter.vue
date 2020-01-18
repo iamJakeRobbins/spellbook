@@ -35,7 +35,7 @@
 				class="btn btn-primary"
 				:value="charId"
 				@click='submitCharacter'>
-				Add Character
+				{{submitMessage}}
 			</button>
 			<button
 			class="btn btn-danger"
@@ -66,6 +66,10 @@ export default class NewCharacter extends Vue {
 			return this.$store.state.classes;
 		}
 		return {};
+	}
+
+	get submitMessage(): string {
+		return this.selectedCharacter ? 'Update Character' : 'Add Character';
 	}
 
 	get selectedCharacter(): number|null {

@@ -66,6 +66,7 @@ export default class ChooseCharacter extends Vue {
 			const data = await fetch(`${this.url}chars`);
 			const json = await data.json();
 			this.addCharacters(json);
+			this.$store.commit('updateSelectedCharacter', null);
 	}
 }
 </script>
