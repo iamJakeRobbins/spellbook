@@ -26,41 +26,35 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class ChooseCharacter extends Vue {
-	userName: string = "Jake";
-	url: string = `http://localhost:3000/`;
+	private userName: string = 'Jake';
+	private url: string = `http://localhost:3000/`;
 
-	get characters()
-	{
+	get characters(): [] {
 		return this.$store.state.characters;
 	}
 
-	newCaster()
-	{
-		this.$router.push('/addCharacter');
-	}
-
-	async mounted(): Promise<any>
-	{
-		if (this.characters.length === 0) {
-			let data = await fetch(`${this.url}chars`);
-			let json = await data.json()
-			this.addCharacters(json);
-		}
-	}
-
-	addCharacters(data: object): void
-	{
+	private addCharacters(data: object): void {
 		this.$store.commit('addCharacters', data);
 	}
 
-	selectCharacter(e:any)
-	{
-		let val:number = e.target.value;
+	private selectCharacter(e: any): void {
+		const val: number = e.target.value;
 		this.$store.commit('updateSelectedCharacter', val);
-		//update route to head to spellbook proper
+		// update route to head to spellbook proper
 		this.$router.push('/spellbook');
 	}
 
+	private newCaster(): void {
+		this.$router.push('/addCharacter');
+	}
+
+	private async mounted(): Promise<any> {
+		if (this.characters.length === 0) {
+			const data = await fetch(`${this.url}chars`);
+			const json = await data.json();
+			this.addCharacters(json);
+		}
+	}
 }
 </script>
 
