@@ -22,7 +22,7 @@
 			</div>
 			<div class="aRow" v-if="classDetailsSet">
 				<label>Character Class: </label>
-				<select @change="updateCharClass($event)">
+				<select :value="charClass" @change="updateCharClass($event)">
 					<option value="0">Select...</option>
 					<option
 					v-for="(item,key,index) in classDetails"
@@ -40,7 +40,7 @@
 			<button
 			class="btn btn-danger"
 			:value="charId"
-			@click="cancel">
+			@click="returnToChars">
 			Cancel
 		</button>
 			</div>
@@ -97,9 +97,12 @@ export default class NewCharacter extends Vue {
 				id: this.selectedCharacter,
 			}),
 		});
-
 		const json = await data.json();
-		console.log(json);
+		this.charName = json[0].name;
+		this.charClass = json[0].class;
+		this.charLevel = json[0].level;
+		this.charId = json[0].id;
+
 	}
 
 	private async submitCharacter(): Promise<any> {
@@ -118,14 +121,14 @@ export default class NewCharacter extends Vue {
 		  },
 		  body: JSON.stringify(data),
 		});
-		this.cancel();
+		this.returnToChars();
 	}
 
 	private addClassesToStore(data: JSON): void {
 		this.$store.commit('getClasses', data);
 	}
 
-	private cancel(): void {
+	private returnToChars(): void {
 		this.$router.push('/char');
 	}
 
