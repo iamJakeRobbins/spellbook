@@ -38,7 +38,7 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class NewCharacter extends Vue {
 	charName:string = '';
-	charClass:string = '';
+	charClass:number = 0;
 	charLevel:number = 0;
 	charId:any =  null;
 	url: string = `http://localhost:3000/`;
@@ -52,19 +52,19 @@ export default class NewCharacter extends Vue {
 		}
 	}
 
-	updateCharName($event)
+	updateCharName($event:any)
 	{
 		this.charName = $event.target.value;
 	}
 
-	updateCharLevel(e)
+	updateCharLevel(e:any)
 	{
 		this.charLevel = parseInt(e.target.value);
 	}
 
-	updateCharClass(e)
+	updateCharClass(e:any)
 	{
-	  this.charClass = parseInt(e.target.value);
+		this.charClass = parseInt(e.target.value);
 	}
 
 	async submitCharacter()
@@ -86,7 +86,7 @@ export default class NewCharacter extends Vue {
 		})
 	}
 
-	addClassesToStore(data)
+	addClassesToStore(data:JSON)
 	{
 		this.$store.commit('getClasses', data);
 	}
@@ -96,7 +96,7 @@ export default class NewCharacter extends Vue {
 		if(!Object.keys(this.classDetails).length) {
 		let data = await fetch(`${this.url}classDetails`);
 		let json = await data.json();
-		this.addClassesToStore(json);
+		this.addClassesToStore(<JSON>json);
 		}
 	}
 }
