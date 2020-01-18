@@ -112,6 +112,10 @@ export default class NewCharacter extends Vue {
 	}
 
 	private async mounted(): Promise<any> {
+		console.log(this.selectedCharacter)
+		if (this.selectedCharacter) {
+			console.log('yep');
+		}
 		if (!Object.keys(this.classDetails).length) {
 		const data = await fetch(`${this.url}classDetails`);
 		const json = await data.json();
