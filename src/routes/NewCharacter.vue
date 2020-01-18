@@ -37,12 +37,12 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class NewCharacter extends Vue {
-	charName:string = '';
-	charClass:number = 0;
-	charLevel:number = 0;
-	charId:any =  null;
+	charName: string = '';
+	charClass: number = 0;
+	charLevel: number = 0;
+	charId: any =  null;
 	url: string = `http://localhost:3000/`;
-	classDetailsSet:boolean = false;
+	classDetailsSet: boolean = false;
 
 	get classDetails()
 	{
@@ -52,17 +52,17 @@ export default class NewCharacter extends Vue {
 		}
 	}
 
-	updateCharName($event:any)
+	updateCharName($event: any)
 	{
 		this.charName = $event.target.value;
 	}
 
-	updateCharLevel(e:any)
+	updateCharLevel(e: any)
 	{
 		this.charLevel = parseInt(e.target.value);
 	}
 
-	updateCharClass(e:any)
+	updateCharClass(e: any)
 	{
 		this.charClass = parseInt(e.target.value);
 	}
@@ -76,7 +76,7 @@ export default class NewCharacter extends Vue {
 			id: this.charId,
 		};
 		//need to add validation before submitting
-		let route:string = this.charId ? `${this.url}updateCharacter` : `${this.url}submitCharacter`
+		let route: string = this.charId ? `${this.url}updateCharacter` : `${this.url}submitCharacter`
 		let request = await fetch(`${route}`, {
 		  method: 'POST',
 		  headers: {
@@ -86,7 +86,7 @@ export default class NewCharacter extends Vue {
 		})
 	}
 
-	addClassesToStore(data:JSON)
+	addClassesToStore(data: JSON)
 	{
 		this.$store.commit('getClasses', data);
 	}
@@ -96,7 +96,7 @@ export default class NewCharacter extends Vue {
 		if(!Object.keys(this.classDetails).length) {
 		let data = await fetch(`${this.url}classDetails`);
 		let json = await data.json();
-		this.addClassesToStore(<JSON>json);
+		this.addClassesToStore(<JSON> json);
 		}
 	}
 }
