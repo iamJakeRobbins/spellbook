@@ -1,40 +1,49 @@
 <template lang="html">
   <div id="body">
-		<div class="aRow">
-			<label>Name: </label>
-			<input
-			type="text"
-			v-bind:value="charName"
-			placeholder="Add Character Name"
-			maxlength="20"
-			@input="updateCharName($event)">
-		</div>
-		<div class="aRow">
-			<label>Character Level: </label>
-			<input
-			type="number"
-			min="1"
-			max="20"
-			:value='charLevel'
-			@input=updateCharLevel($event)>
-		</div>
-		<div class="aRow" v-if="classDetailsSet">
-			<label>Character Class: </label>
-			<select @change="updateCharClass($event)">
-				<option value="0">Select...</option>
-				<option
-				v-for="(item,key,index) in classDetails"
-				:id="key"
-				:value="key"> {{item}}</option>
-			</select>
-		</div>
-		<div class="aRow">
+		<div id ="home_main" class="container rounded">
+			<h2>Add Character Details</h2>
+			<div class="aRow">
+				<label>Name: </label>
+				<input
+				type="text"
+				v-bind:value="charName"
+				placeholder="Add Character Name"
+				maxlength="20"
+				@input="updateCharName($event)">
+			</div>
+			<div class="aRow">
+				<label>Character Level: </label>
+				<input
+				type="number"
+				min="1"
+				max="20"
+				:value='charLevel'
+				@input=updateCharLevel($event)>
+			</div>
+			<div class="aRow" v-if="classDetailsSet">
+				<label>Character Class: </label>
+				<select @change="updateCharClass($event)">
+					<option value="0">Select...</option>
+					<option
+					v-for="(item,key,index) in classDetails"
+					:id="key"
+					:value="key"> {{item}}</option>
+				</select>
+			</div>
+			<div class="aRow">
+				<button
+				class="btn btn-primary"
+				:value="charId"
+				@click='submitCharacter'>
+				Add Character
+			</button>
 			<button
-			class="btn btn-primary"
+			class="btn btn-danger"
 			:value="charId"
-			@click='submitCharacter'>
-			Add Character
+			@click="cancel">
+			Cancel
 		</button>
+			</div>
 		</div>
   </div>
 </template>
@@ -87,10 +96,15 @@ export default class NewCharacter extends Vue {
 		  },
 		  body: JSON.stringify(data),
 		});
+		this.cancel();
 	}
 
 	private addClassesToStore(data: JSON): void {
 		this.$store.commit('getClasses', data);
+	}
+
+	private cancel(): void {
+		this.$router.push('/char');
 	}
 
 	private async mounted(): Promise<any> {
@@ -104,8 +118,25 @@ export default class NewCharacter extends Vue {
 </script>
 
 <style lang="css" scoped>
+#body {
+	background-image: url('../assets/background_books.jpg');
+	background-size: 100vw;
+	height: 100vh;
+}
+#home_main {
+	background-color: lightgray;
+	height:100vh;
+	width:60vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
 .aRow {
 	padding-top: .5em;
 	padding-bottom: .5em;
+}
+button {
+	padding-left: .5em;
+	padding-right: .5em;
 }
 </style>
