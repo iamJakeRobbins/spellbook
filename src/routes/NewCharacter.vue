@@ -64,8 +64,7 @@ export default class NewCharacter extends Vue {
 
 	updateCharClass(e)
 	{
-		console.log(e.target.value)
-		this.charClass = parseInt(e.target.value);
+	  this.charClass = parseInt(e.target.value);
 	}
 
 	async submitCharacter()
