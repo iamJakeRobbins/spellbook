@@ -69,7 +69,7 @@ export default class NewCharacter extends Vue {
 	}
 
 	get selectedCharacter(): number|null {
-		if(this.$store.state.selectedCharacter) {
+		if (this.$store.state.selectedCharacter) {
 			return this.$store.state.selectedCharacter;
 		}
 		return null;
@@ -93,9 +93,11 @@ export default class NewCharacter extends Vue {
 		  headers: {
 		    'Content-Type': 'application/json',
 		  },
-		  body: JSON.stringify(this.selectedCharacter),
+		  body: JSON.stringify({
+				id: this.selectedCharacter,
+			}),
 		});
-		
+
 		const json = await data.json();
 		console.log(json);
 	}
