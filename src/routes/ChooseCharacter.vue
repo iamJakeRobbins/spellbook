@@ -71,7 +71,7 @@ export default class ChooseCharacter extends Vue {
 		    'Content-Type': 'application/json',
 		  },
 		  body: JSON.stringify({
-				id: id,
+				id,
 			}),
 		});
 		await this.refreshCharacterList();
