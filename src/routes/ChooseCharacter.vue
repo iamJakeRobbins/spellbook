@@ -18,7 +18,8 @@
 			</button>
 				<button
 				class="btn btn-danger"
-				:value="char.id">
+				:value="char.id"
+				@click="deleteCaster">
 				Delete
 			</button>
 			</div>
@@ -62,10 +63,28 @@ export default class ChooseCharacter extends Vue {
 		this.$router.push('/addCharacter');
 	}
 
+	private async deleteCaster(e: any): Promise<any> {
+		const id: number = parseInt(e.target.value, 10);
+		const data = await fetch(`${this.url}deleteCharacter`, {
+			method: 'POST',
+		  headers: {
+		    'Content-Type': 'application/json',
+		  },
+		  body: JSON.stringify({
+				id: id,
+			}),
+		});
+		await this.refreshCharacterList();
+	}
+
+	private async refreshCharacterList() {
+		const data = await fetch(`${this.url}chars`);
+		const json = await data.json();
+		await this.addCharacters(json);
+	}
+
 	private async mounted(): Promise<any> {
-			const data = await fetch(`${this.url}chars`);
-			const json = await data.json();
-			this.addCharacters(json);
+			this.refreshCharacterList();
 			this.$store.commit('updateSelectedCharacter', null);
 	}
 }
