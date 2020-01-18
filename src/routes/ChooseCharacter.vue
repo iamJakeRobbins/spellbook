@@ -8,10 +8,18 @@
 			<p>
 				Your casters are displayed below, select one to view their spellbooks
 			</p>
-			<div class="aRrow" v-for="char in characters">
+			<div class="aRow" v-for="char in characters">
 				<span class="nameSpan" @click="selectCharacter">{{char.name}}</span>
-				<button class="btn btn-success" :value="char.id">edit</button>
-				<button class="btn btn-danger" :value="char.id">delete</button>
+				<button
+				class="btn btn-success"
+				:value="char.id">
+				Edit
+			</button>
+				<button
+				class="btn btn-danger"
+				:value="char.id">
+				Delete
+			</button>
 			</div>
 			<div class="aRow">
 				<button class="btn btn-primary" @click="newCaster">Add A Caster</button>
@@ -40,7 +48,6 @@ export default class ChooseCharacter extends Vue {
 	private selectCharacter(e: any): void {
 		const val: number = e.target.value;
 		this.$store.commit('updateSelectedCharacter', val);
-		// update route to head to spellbook proper
 		this.$router.push('/spellbook');
 	}
 
@@ -49,11 +56,9 @@ export default class ChooseCharacter extends Vue {
 	}
 
 	private async mounted(): Promise<any> {
-		if (this.characters.length === 0) {
 			const data = await fetch(`${this.url}chars`);
 			const json = await data.json();
 			this.addCharacters(json);
-		}
 	}
 }
 </script>

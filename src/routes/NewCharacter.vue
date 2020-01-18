@@ -5,6 +5,8 @@
 			<input
 			type="text"
 			v-bind:value="charName"
+			placeholder="Add Character Name"
+			maxlength="20"
 			@input="updateCharName($event)">
 		</div>
 		<div class="aRow">
@@ -27,7 +29,12 @@
 			</select>
 		</div>
 		<div class="aRow">
-			<button class="btn btn-primary" :value="charId" @click='submitCharacter'>Add Character</button>
+			<button
+			class="btn btn-primary"
+			:value="charId"
+			@click='submitCharacter'>
+			Add Character
+		</button>
 		</div>
   </div>
 </template>

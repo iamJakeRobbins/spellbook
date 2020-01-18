@@ -11,6 +11,7 @@ export default new Vuex.Store({
   },
   mutations: {
 		addCharacters(state: any, payload) {
+			state.characters = [];
 			payload.forEach((e: any) => {
 				const obj = {
 					id: e.id,
