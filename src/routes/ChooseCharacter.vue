@@ -9,7 +9,11 @@
 				Your casters are displayed below, select one to view their spellbooks
 			</p>
 			<div class="aRow" v-for="char in characters">
-				<span class="nameSpan" @click="selectCharacter">{{char.name}}</span>
+				<span @click="selectCharacter">
+					<span class="nameSpan"> {{char.name}}</span>
+					<span class="nameSpan"> Level: {{char.level}}</span>
+					<span> {{char.description}}</span>
+				</span>
 				<button
 				class="btn btn-success"
 				:value="char.id"
