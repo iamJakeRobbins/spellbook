@@ -10,6 +10,7 @@
 			</p>
 			<div class="aRow" v-for="char in characters">
 				<span @click="selectCharacter">
+					<img class="portrait"src="@/assets/portrait_placeholder.png" alt="portrait silhouette">
 					<span class="nameSpan"> {{char.name}}</span>
 					<span class="nameSpan"> Level: {{char.level}}</span>
 					<span> {{char.description}}</span>
@@ -120,5 +121,9 @@ button {
 	padding-top: .5em;
 	padding-bottom: .5em;
 	text-align: center;
+}
+.portrait {
+	height: 5em;
+	width: 5em;
 }
 </style>
