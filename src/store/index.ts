@@ -13,11 +13,12 @@ export default new Vuex.Store({
 		addCharacters(state: any, payload) {
 			state.characters = [];
 			payload.forEach((e: any) => {
-				const obj = {
-					id: e.id,
-					name: e.name};
+				const obj: any = new Object();
+				Object.keys(e).map((el) => {
+						obj[el] = e[el];
+				});
 				state.characters.push(obj);
-			});
+				});
 		},
 
 		updateSelectedCharacter(state: any, payload) {
