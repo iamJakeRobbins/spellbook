@@ -30,6 +30,7 @@
 					:value="key"> {{item}}</option>
 				</select>
 			</div>
+			<!-- spell slots go here (collapsable index that expands to a select box) -->
 			<div class="aRow">
 				<button
 				class="btn btn-primary"
