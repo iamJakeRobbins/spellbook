@@ -2,7 +2,7 @@
 
 Take the hassle out of managing your spellcasting!  The caster's library allows you to create and store Pathfinder characters, manage their daily spell preparations and make the complicated task of remembering spell allotment and duration simple.
 
-A class-based Vue front end with type checking via Typescript with a Bootstrap implementation to keep styling clean and simple.
+A class-based Vue front end with type checking via Typescript with a Bootstrap implementation to keep styling clean and simple.  State management is crisply managed via Vuex and routing is handled via the Vue Router.
 
 
 ## Project setup
