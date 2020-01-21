@@ -2,6 +2,7 @@
   <div id="body">
 		<div id ="home_main" class="container rounded">
 			<h2>Add Character Details</h2>
+			<div class="flexContainer" >
 			<div class="aRow">
 				<label>Name: </label>
 				<input
@@ -29,6 +30,7 @@
 					:id="key"
 					:value="key"> {{item}}</option>
 				</select>
+			</div>
 			</div>
 			<!-- spell slots go here (collapsable index that expands to a select box) -->
 			<div class="aRow">
