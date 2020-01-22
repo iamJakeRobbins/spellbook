@@ -10,7 +10,7 @@
 			</p>
 			<div class="aRow" v-for="char in characters">
 				<span @click="selectCharacter">
-					<img class="portrait"src="@/assets/portrait_placeholder.png" alt="portrait silhouette">
+					<img class="portrait" src="@/assets/portrait_placeholder.png" alt="portrait silhouette">
 					<span class="nameSpan"> {{char.name}}</span>
 					<span class="nameSpan"> Level: {{char.level}}</span>
 					<span> {{char.description}}</span>
@@ -38,44 +38,43 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import {mapGetters} from "vuex";
 
-@Component
+@Component({
+	computed: {
+		...mapGetters,
+	},
+})
 export default class ChooseCharacter extends Vue {
 	private userName: string = 'Jake';
-	private url: string = `http://localhost:3000/`;
+	private url!: string;
+	private characters!: [];
 
-	get characters(): [] {
-		return this.$store.state.characters;
-	}
-
-	private addCharacters(data: object): void {
+	public addCharacters(data: object): void {
 		this.$store.commit('addCharacters', data);
 	}
 
-	private selectCharacter(e: any): void {
+	public selectCharacter(e: any): void {
 		const val: number = e.target.value;
 		this.$store.commit('updateSelectedCharacter', val);
 		this.$router.push('/spellbook');
 	}
 
-	private editChar(e: any): void {
+	public editChar(e: any): void {
 		const id: number = parseInt(e.target.value, 10);
 		this.$store.commit('updateSelectedCharacter', id);
 		this.newCaster();
 	}
 
-	private newCaster(): void {
-		this.$router.push('/addCharacter');
-	}
-
-	private async deleteCaster(e: any): Promise<any> {
+	public async deleteCaster(e: any): Promise<any> {
 		const id: number = parseInt(e.target.value, 10);
-		const data = await fetch(`${this.url}deleteCharacter`, {
+
+		await fetch(`${this.url}deleteCharacter`, {
 			method: 'POST',
-		  headers: {
-		    'Content-Type': 'application/json',
-		  },
-		  body: JSON.stringify({
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
 				id,
 			}),
 		});
@@ -83,14 +82,24 @@ export default class ChooseCharacter extends Vue {
 	}
 
 	private async refreshCharacterList() {
+		console.log(this.url)
 		const data = await fetch(`${this.url}chars`);
 		const json = await data.json();
 		await this.addCharacters(json);
 	}
 
+	private newCaster(): void {
+		this.$router.push('/addCharacter');
+	}
+
+
+
 	private async mounted(): Promise<any> {
 			this.refreshCharacterList();
 			this.$store.commit('updateSelectedCharacter', null);
+			this.$nextTick(() => {
+				console.log('there')
+			})
 	}
 }
 </script>
