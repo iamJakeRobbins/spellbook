@@ -32,8 +32,9 @@
             </option>
           </select>
         </div>
-      </div>
       <!-- spell slots go here (collapsable index that expands to a select box) -->
+			<spell-slots-compact></spell-slots-compact>
+			</div>
       <div class="aRow">
         <button
                 class="btn btn-primary"
@@ -54,8 +55,13 @@
 
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator';
+  import SpellSlotsCompact from "@/components/SpellSlotsCompact.vue";
 
-  @Component
+  @Component({
+		components : {
+			SpellSlotsCompact
+		}
+	})
   export default class NewCharacter extends Vue {
     private charName: string = '';
     private charClass: number = 0;
@@ -149,7 +155,7 @@
       if (!Object.keys(this.classDetails).length) {
         const data = await fetch(`${this.url}classDetails`);
         const json = await data.json();
-        this.addClassesToStore(<JSON>json);
+        this.addClassesToStore(<JSON> json);
       }
       if (this.selectedCharacter) {
         this.fetchCharacterInfo();

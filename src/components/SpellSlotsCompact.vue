@@ -8,7 +8,11 @@
     import { Component, Vue } from 'vue-property-decorator';
 
     @Component
-    export default class NewCharacter extends Vue {
+    export default class SpellSlotsCompact extends Vue {
+        mounted() {
+            console.log('hello world')
+        }
+    }
 </script>
 <style scoped>
 
