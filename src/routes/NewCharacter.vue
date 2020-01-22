@@ -3,37 +3,39 @@
     <div id="home_main" class="container rounded">
       <h2>Add Character Details</h2>
       <div class="flexContainer">
-        <div class="aRow">
-          <label>Name: </label>
-          <input
-									type="text"
-                  v-bind:value="charName"
-                  placeholder="Add Character Name"
-                  maxlength="20"
-                  @input="updateCharName($event)">
-        </div>
-        <div class="aRow">
-          <label>Character Level: </label>
-          <input
-                  type="number"
-                  min="1"
-                  max="20"
-                  :value='charLevel'
-                  @input=updateCharLevel($event)>
-        </div>
-        <div class="aRow" v-if="classDetailsSet">
-          <label>Character Class: </label>
-          <select :value="charClass" @change="updateCharClass($event)">
-            <option value="0">Select...</option>
-            <option
-                    v-for="(item,key,index) in classDetails"
-                    :id="key"
-                    :value="key"> {{item}}
-            </option>
-          </select>
-        </div>
+				<div>
+					<div class="aRow">
+						<label>Name: </label>
+						<input
+										type="text"
+										v-bind:value="charName"
+										placeholder="Add Character Name"
+										maxlength="20"
+										@input="updateCharName($event)">
+					</div>
+					<div class="aRow">
+						<label>Character Level: </label>
+						<input
+										type="number"
+										min="1"
+										max="20"
+										:value='charLevel'
+										@input=updateCharLevel($event)>
+					</div>
+					<div class="aRow" v-if="classDetailsSet">
+						<label>Character Class: </label>
+						<select :value="charClass" @change="updateCharClass($event)">
+							<option value="0">Select...</option>
+							<option
+											v-for="(item,key,index) in classDetails"
+											:id="key"
+											:value="key"> {{item}}
+							</option>
+						</select>
+					</div>
+				</div>
       <!-- spell slots go here (collapsable index that expands to a select box) -->
-			<spell-slots-compact></spell-slots-compact>
+			<spell-slots-compact/>
 			</div>
       <div class="aRow">
         <button
@@ -184,6 +186,11 @@
     padding-top: .5em;
     padding-bottom: .5em;
   }
+
+	.flexContainer {
+		display: flex;
+		justify-content: space-between;
+	}
 
   button {
     padding-left: .5em;
