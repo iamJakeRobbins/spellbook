@@ -54,7 +54,6 @@ export default new Vuex.Store({
 			return state.classes;
 		},
 		url: (state) => {
-  		console.log('here')
   		return state.url;
 		},
 	},

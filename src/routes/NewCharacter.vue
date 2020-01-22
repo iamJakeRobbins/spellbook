@@ -66,18 +66,23 @@
 			SpellSlotsCompact,
 		},
 		computed: {
-			...mapGetters,
+			...mapGetters([
+							"classes",
+							"url",
+							"selectedCharacter",
+			]),
 		},
 	})
   export default class NewCharacter extends Vue {
+		public classDetailsSet: boolean = false;
     private charName: string = '';
     private charClass: number = 0;
     private charLevel: number = 0;
     private charId: any = null;
-    private classDetailsSet: boolean = false;
     private selectedCharacter!: number;
     private classes!: {};
 		private url!: string;
+
 
     get submitMessage(): string {
       return this.selectedCharacter ? 'Update Character' : 'Add Character';

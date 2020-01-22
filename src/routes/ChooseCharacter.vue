@@ -37,18 +37,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import {mapGetters} from "vuex";
+	import {Component, Vue, Watch} from 'vue-property-decorator';
+	import {mapGetters} from 'vuex';
 
 @Component({
 	computed: {
-		...mapGetters,
+		...mapGetters([
+						'url',
+						'characters',
+
+		]),
 	},
 })
 export default class ChooseCharacter extends Vue {
 	private userName: string = 'Jake';
 	private url!: string;
-	private characters!: [];
+	public characters!: [];
 
 	public addCharacters(data: object): void {
 		this.$store.commit('addCharacters', data);
@@ -82,7 +86,7 @@ export default class ChooseCharacter extends Vue {
 	}
 
 	private async refreshCharacterList() {
-		console.log(this.url)
+
 		const data = await fetch(`${this.url}chars`);
 		const json = await data.json();
 		await this.addCharacters(json);
@@ -92,14 +96,9 @@ export default class ChooseCharacter extends Vue {
 		this.$router.push('/addCharacter');
 	}
 
-
-
 	private async mounted(): Promise<any> {
-			this.refreshCharacterList();
-			this.$store.commit('updateSelectedCharacter', null);
-			this.$nextTick(() => {
-				console.log('there')
-			})
+		this.refreshCharacterList();
+		this.$store.commit('updateSelectedCharacter', null);
 	}
 }
 </script>
