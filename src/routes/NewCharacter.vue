@@ -3,7 +3,7 @@
     <div id="home_main" class="container rounded">
       <h2>Add Character Details</h2>
       <div class="flexContainer">
-				<div>
+				<div class="flexItem">
 					<div class="aRow">
 						<label>Name: </label>
 						<input
@@ -35,7 +35,9 @@
 					</div>
 				</div>
       <!-- spell slots go here (collapsable index that expands to a select box) -->
-			<spell-slots-compact/>
+				<div class="flexItem">
+					<spell-slots-compact/>
+				</div>
 			</div>
       <div class="aRow">
         <button
@@ -190,6 +192,10 @@
 	.flexContainer {
 		display: flex;
 		justify-content: space-between;
+	}
+
+	.flexItem {
+		width: 30vw;
 	}
 
   button {
