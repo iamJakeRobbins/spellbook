@@ -6,21 +6,25 @@
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import SpellSlotByLevelCollapse from "@/components/SpellSlotByLevelCollapse.vue";
+    import SpellSlotByLevelCollapse from '@/components/SpellSlotByLevelCollapse.vue';
+    import {mapGetters} from 'vuex';
+
 
     @Component({
         components: {
             SpellSlotByLevelCollapse,
-        }
+        },
+        computed: {
+            ...mapGetters,
+        },
     })
     export default class SpellSlotsCompact extends Vue {
-      get selectedCharacter(): number {
-          return this.$store.state.selectedCharacter;
-      }
+      private selectedCharacters!: number;
+      private url!: string;
 
-      async mounted() {
+      private async mounted() {
           // this component needs to fetch available spell levels so that we can loop over them to create the display field
-          const data = fetch(`${this.url}`)
+          const data = await fetch(`${this.url}`);
       }
     }
 </script>

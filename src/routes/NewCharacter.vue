@@ -27,14 +27,13 @@
 						<select :value="charClass" @change="updateCharClass($event)">
 							<option value="0">Select...</option>
 							<option
-											v-for="(item,key,index) in classDetails"
+											v-for="(item,key,index) in classes"
 											:id="key"
 											:value="key"> {{item}}
 							</option>
 						</select>
 					</div>
 				</div>
-      <!-- spell slots go here (collapsable index that expands to a select box) -->
 				<div class="flexItem">
 					<spell-slots-compact/>
 				</div>
@@ -59,49 +58,40 @@
 
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator';
-  import SpellSlotsCompact from "@/components/SpellSlotsCompact.vue";
+  import SpellSlotsCompact from '@/components/SpellSlotsCompact.vue';
+  import {mapGetters} from 'vuex';
 
   @Component({
 		components : {
-			SpellSlotsCompact
-		}
+			SpellSlotsCompact,
+		},
+		computed: {
+			...mapGetters,
+		},
 	})
   export default class NewCharacter extends Vue {
     private charName: string = '';
     private charClass: number = 0;
     private charLevel: number = 0;
     private charId: any = null;
-    private url: string = `http://localhost:3000/`;
     private classDetailsSet: boolean = false;
-
-    get classDetails(): object {
-      if (this.$store.state.classes) {
-        this.classDetailsSet = true;
-        return this.$store.state.classes;
-      }
-      return {};
-    }
+    private selectedCharacter!: number;
+    private classes!: {};
+		private url!: string;
 
     get submitMessage(): string {
       return this.selectedCharacter ? 'Update Character' : 'Add Character';
     }
 
-    get selectedCharacter(): number | null {
-      if (this.$store.state.selectedCharacter) {
-        return this.$store.state.selectedCharacter;
-      }
-      return null;
-    }
-
-    private updateCharName($event: any): void {
+    public updateCharName($event: any): void {
       this.charName = $event.target.value;
     }
 
-    private updateCharLevel(e: any): void {
+    public updateCharLevel(e: any): void {
       this.charLevel = parseInt(e.target.value, 10);
     }
 
-    private updateCharClass(e: any): void {
+     public updateCharClass(e: any): void {
       this.charClass = parseInt(e.target.value, 10);
     }
 
@@ -156,7 +146,7 @@
 
     private async mounted(): Promise<any> {
 
-      if (!Object.keys(this.classDetails).length) {
+      if (!Object.keys(this.classes).length) {
         const data = await fetch(`${this.url}classDetails`);
         const json = await data.json();
         this.addClassesToStore(<JSON> json);

@@ -8,6 +8,7 @@ export default new Vuex.Store({
 		selectedCharacter: null,
 		characters: [] = [],
 		classes: new Object(),
+		url: `http://localhost:3000/`,
   },
   mutations: {
 		addCharacters(state: any, payload) {
@@ -40,7 +41,19 @@ export default new Vuex.Store({
 			});
 			state.classes = ob;
 		},
-  },
+  }, // end mutations
+
+	getters: {
+  	selectedCharacter: (state) => {
+  		return state.selectedCharacter;
+		},
+		classes: (state) => {
+			return state.classes;
+		},
+		url: (state) => {
+  		return state.url;
+		},
+	},
   actions: {
   },
   modules: {
