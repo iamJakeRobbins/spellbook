@@ -31,11 +31,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import {mapGetters} from 'vuex';
 
-@Component({
-	computed: {
-		...mapGetters
-	}
-})
+@Component
 export default class Home extends Vue {
 	private loginNow(): void {
 		// routing directly to character list for now, need to route to login page

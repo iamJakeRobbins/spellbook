@@ -67,9 +67,9 @@
 		},
 		computed: {
 			...mapGetters([
-							"classes",
-							"url",
-							"selectedCharacter",
+				'classes',
+				'url',
+				'selectedCharacter',
 			]),
 		},
 	})
@@ -82,7 +82,6 @@
     private selectedCharacter!: number;
     private classes!: {};
 		private url!: string;
-
 
     get submitMessage(): string {
       return this.selectedCharacter ? 'Update Character' : 'Add Character';

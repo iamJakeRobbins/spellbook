@@ -40,67 +40,67 @@
 	import {Component, Vue, Watch} from 'vue-property-decorator';
 	import {mapGetters} from 'vuex';
 
-@Component({
-	computed: {
-		...mapGetters([
-						'url',
-						'characters',
+	@Component({
+		computed: {
+			...mapGetters([
+				'url',
+				'characters',
+			]),
+		},
+	})
+	export default class ChooseCharacter extends Vue {
+		public characters!: [];
+		private userName: string = 'Jake';
+		private url!: string;
 
-		]),
-	},
-})
-export default class ChooseCharacter extends Vue {
-	private userName: string = 'Jake';
-	private url!: string;
-	public characters!: [];
 
-	public addCharacters(data: object): void {
-		this.$store.commit('addCharacters', data);
+		public addCharacters(data: object): void {
+			this.$store.commit('addCharacters', data);
+		}
+
+		public selectCharacter(e: any): void {
+			const val: number = e.target.value;
+			this.$store.commit('updateSelectedCharacter', val);
+			this.$router.push('/spellbook');
+		}
+
+		public editChar(e: any): void {
+			const id: number = parseInt(e.target.value, 10);
+			this.$store.commit('updateSelectedCharacter', id);
+			this.newCaster();
+		}
+
+		public async deleteCaster(e: any): Promise<any> {
+			const id: number = parseInt(e.target.value, 10);
+
+			await fetch(`${this.url}deleteCharacter`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					id,
+				}),
+			});
+			await this.refreshCharacterList();
+		}
+
+		private async refreshCharacterList() {
+
+			const data = await fetch(`${this.url}chars`);
+			const json = await data.json();
+			await this.addCharacters(json);
+		}
+
+		private newCaster(): void {
+			this.$router.push('/addCharacter');
+		}
+
+		private async mounted(): Promise<any> {
+			this.refreshCharacterList();
+			this.$store.commit('updateSelectedCharacter', null);
+		}
 	}
-
-	public selectCharacter(e: any): void {
-		const val: number = e.target.value;
-		this.$store.commit('updateSelectedCharacter', val);
-		this.$router.push('/spellbook');
-	}
-
-	public editChar(e: any): void {
-		const id: number = parseInt(e.target.value, 10);
-		this.$store.commit('updateSelectedCharacter', id);
-		this.newCaster();
-	}
-
-	public async deleteCaster(e: any): Promise<any> {
-		const id: number = parseInt(e.target.value, 10);
-
-		await fetch(`${this.url}deleteCharacter`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				id,
-			}),
-		});
-		await this.refreshCharacterList();
-	}
-
-	private async refreshCharacterList() {
-
-		const data = await fetch(`${this.url}chars`);
-		const json = await data.json();
-		await this.addCharacters(json);
-	}
-
-	private newCaster(): void {
-		this.$router.push('/addCharacter');
-	}
-
-	private async mounted(): Promise<any> {
-		this.refreshCharacterList();
-		this.$store.commit('updateSelectedCharacter', null);
-	}
-}
 </script>
 
 <style lang="css" scoped>
