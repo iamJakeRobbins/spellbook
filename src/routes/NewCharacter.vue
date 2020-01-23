@@ -119,6 +119,7 @@
       this.charClass = data.class;
       this.charLevel = data.level;
       this.charId = data.id;
+      this.classDetailsSet = true;
     }
 
     private async submitCharacter(): Promise<any> {
@@ -142,6 +143,7 @@
 
     private addClassesToStore(data: JSON): void {
       this.$store.commit('getClasses', data);
+      this.classDetailsSet = true;
     }
 
     private returnToChars(): void {
