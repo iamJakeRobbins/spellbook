@@ -35,7 +35,7 @@
 					</div>
 				</div>
 				<div class="flexItem">
-					<spell-slots-compact/>
+					<spell-slots-compact :charId="charId"/>
 				</div>
 			</div>
       <div class="aRow">
@@ -120,6 +120,8 @@
       this.charLevel = data.level;
       this.charId = data.id;
       this.classDetailsSet = true;
+
+      console.log(this.charId)
     }
 
     private async submitCharacter(): Promise<any> {
