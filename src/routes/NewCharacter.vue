@@ -116,11 +116,12 @@
     }
 
     private syncCharSpellSlots(data: JSON) :void {
-    	this.$store.commit('syncCharSpellSlots');
+    	this.$store.commit('syncCharSpellSlots', data);
     	this.syncCharSpellSlotsWithStore();
 		}
 
     private syncCharInfo(data: any): void {
+    	this.$store.commit('syncCharInfo');
       this.charName = data.name;
       this.charClass = data.class;
       this.charLevel = data.level;
