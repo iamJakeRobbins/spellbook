@@ -9,6 +9,9 @@ export default new Vuex.Store({
 		characters: [] = [],
 		classes: new Object(),
 		url: 'http://localhost:3000/',
+		spellSlots: {
+			first: null,
+		},
   },
   mutations: {
 		addCharacters(state: any, payload) {
@@ -31,7 +34,6 @@ export default new Vuex.Store({
 			} else {
 				state.selectedCharacter = null;
 			}
-
 		},
 
 		getClasses(state: any, payload) {
@@ -40,6 +42,15 @@ export default new Vuex.Store({
 				ob[e.id] = e.description;
 			});
 			state.classes = ob;
+		},
+
+		syncCharInfo(state: any, payload) {
+
+		},
+
+		// TODO needs to expand as spell list expands
+		syncCharSpellSlots(state: any, payload) {
+			state.spellSlots.first = payload.first;
 		},
   }, // end mutations
 
