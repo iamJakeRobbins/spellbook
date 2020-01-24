@@ -31,18 +31,18 @@
       @Prop([Number])  charId!: number;
 
       private async mounted() {
-          const data: object = {
-              id: this.charId,
-          };
-          // this component needs to fetch available spell levels so that we can loop over them to create the display field
-          const request = await fetch(`${this.url}charSpellSlots`, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(data),
-          });
-          this.spellSlots = await request.json();
+      //     const data: object = {
+      //         id: this.charId,
+      //     };
+      //     // this component needs to fetch available spell levels so that we can loop over them to create the display field
+      //     const request = await fetch(`${this.url}charSpellSlots`, {
+      //         method: 'POST',
+      //         headers: {
+      //             'Content-Type': 'application/json',
+      //         },
+      //         body: JSON.stringify(data),
+      //     });
+      //     this.spellSlots = await request.json();
       }
     }
 </script>

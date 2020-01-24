@@ -112,7 +112,13 @@
 
       const json = await data.json();
       this.syncCharInfo(json[0]);
+      this.syncCharSpellSlots(json[0]);
     }
+
+    private syncCharSpellSlots(data: JSON) :void {
+    	this.$store.commit('syncCharSpellSlots');
+    	this.syncCharSpellSlotsWithStore();
+		}
 
     private syncCharInfo(data: any): void {
       this.charName = data.name;
@@ -120,9 +126,15 @@
       this.charLevel = data.level;
       this.charId = data.id;
       this.classDetailsSet = true;
-
-      console.log(this.charId)
     }
+
+    private syncCharSpellSlotsWithStore() {
+
+		}
+
+		private sycnCharInfoWithStore() {
+
+		}
 
     private async submitCharacter(): Promise<any> {
       const data: object = {
