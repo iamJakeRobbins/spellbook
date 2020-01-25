@@ -1,15 +1,16 @@
+import {ProfileState} from "@/store/storeTypes";
 
 export const getters =  {
-  selectedCharacter: (state) => {
+  selectedCharacter: (state: ProfileState) => {
     return state.selectedCharacter;
   },
-      characters: (state) => {
+      characters: (state: ProfileState) => {
     return state.characters;
   },
-      classes: (state) => {
+      classes: (state: ProfileState) => {
     return state.classes;
   },
-      url: (state) => {
+      url: (state: ProfileState) => {
     return state.url;
   },
 };
