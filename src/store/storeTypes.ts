@@ -3,7 +3,7 @@ export interface ProfileState {
   characters: CharacterObject;
   classes: object;
   url: string;
-  spellSlots: object;
+  spellSlots: SpellSlotsType;
 }
 
 interface CharacterObject {
@@ -14,4 +14,8 @@ interface CharactersType {
   name: string;
   level: number;
   description: string;
+}
+
+interface SpellSlotsType {
+  first: number | null
 }
