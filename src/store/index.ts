@@ -4,13 +4,16 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 interface charactersType {
-[id: number] : {}
+	name: string,
+	level: number,
+	description: string,
 }
 
 export default new Vuex.Store({
+
   state: {
 		selectedCharacter: null,
-		characters: {},
+		characters: charactersType = {},
 		classes: {},
 		url: 'http://localhost:3000',
 		spellSlots: {
@@ -20,9 +23,12 @@ export default new Vuex.Store({
   mutations: {
   	updateCharacters(state, payload) {
   		payload.forEach((e: any) => {
+  			const keye = e.id;
 				const ob = {...e};
 				delete ob['id'];
-				 state.characters[ e.id] = ob;
+				let stateCharacters: charactersType = state.characters;
+				state.characters[keye]
+				 // Object.assign(state.characters,  {key: ob});
 			})
 
 		},
@@ -30,7 +36,7 @@ export default new Vuex.Store({
 		addCharacters(state: any, payload) {
 			state.characters = [];
 			payload.forEach((e: any) => {
-				const obj: any = new Object();
+				const obj: any = {};
 				Object.keys(e).map((el) => {
 						obj[el] = e[el];
 				});
