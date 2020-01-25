@@ -35,7 +35,7 @@
       //         id: this.charId,
       //     };
       //     // this component needs to fetch available spell levels so that we can loop over them to create the display field
-      //     const request = await fetch(`${this.url}charSpellSlots`, {
+      //     const request = await fetch(`${this.url}/api/charSpellSlots`, {
       //         method: 'POST',
       //         headers: {
       //             'Content-Type': 'application/json',

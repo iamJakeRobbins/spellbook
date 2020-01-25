@@ -8,29 +8,29 @@
 			<p>
 				Your casters are displayed below, select one to view their spellbooks
 			</p>
-			<div class="aRow" v-for="char in characters">
-				<span @click="selectCharacter">
-					<img class="portrait" src="@/assets/portrait_placeholder.png" alt="portrait silhouette">
-					<span class="nameSpan"> {{char.name}}</span>
-					<span class="nameSpan"> Level: {{char.level}}</span>
-					<span> {{char.description}}</span>
-				</span>
-				<button
-				class="btn btn-success"
-				:value="char.id"
-				@click="editChar">
-				Edit
-			</button>
-				<button
-				class="btn btn-danger"
-				:value="char.id"
-				@click="deleteCaster">
-				Delete
-			</button>
-			</div>
-			<div class="aRow">
-				<button class="btn btn-primary" @click="newCaster">Add A Caster</button>
-			</div>
+<!--			<div class="aRow" v-for="char in characters">-->
+<!--				<span @click="selectCharacter">-->
+<!--					<img class="portrait" src="@/assets/portrait_placeholder.png" alt="portrait silhouette">-->
+<!--					<span class="nameSpan"> {{char.name}}</span>-->
+<!--					<span class="nameSpan"> Level: {{char.level}}</span>-->
+<!--					<span> {{char.description}}</span>-->
+<!--				</span>-->
+<!--				<button-->
+<!--				class="btn btn-success"-->
+<!--				:value="char.id"-->
+<!--				@click="editChar">-->
+<!--				Edit-->
+<!--			</button>-->
+<!--				<button-->
+<!--				class="btn btn-danger"-->
+<!--				:value="char.id"-->
+<!--				@click="deleteCaster">-->
+<!--				Delete-->
+<!--			</button>-->
+<!--			</div>-->
+<!--			<div class="aRow">-->
+<!--				<button class="btn btn-primary" @click="newCaster">Add A Caster</button>-->
+<!--			</div>-->
 			</div>
 		</div>
 	</div>
@@ -73,7 +73,7 @@
 		public async deleteCaster(e: any): Promise<any> {
 			const id: number = parseInt(e.target.value, 10);
 
-			await fetch(`${this.url}deleteCharacter`, {
+			await fetch(`${this.url}/api/deleteCharacter`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -87,7 +87,7 @@
 
 		private async refreshCharacterList() {
 
-			const data = await fetch(`${this.url}chars`);
+			const data = await fetch(`${this.url}/api/chars`);
 			const json = await data.json();
 			await this.addCharacters(json);
 		}

@@ -100,7 +100,7 @@
     }
 
     private async fetchCharacterInfo() {
-      const data = await fetch(`${this.url}getSingleCharacter`, {
+      const data = await fetch(`${this.url}/api/getSingleCharacter`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -145,7 +145,7 @@
         id: this.charId,
       };
       // need to add validation before submitting
-      const route: string = this.charId ? `${this.url}updateCharacter` : `${this.url}submitCharacter`;
+      const route: string = this.charId ? `${this.url}/api/updateCharacter` : `${this.url}submitCharacter`;
       const request = await fetch(`${route}`, {
         method: 'POST',
         headers: {
@@ -168,7 +168,7 @@
     private async mounted(): Promise<any> {
 
       if (!Object.keys(this.classes).length) {
-        const data = await fetch(`${this.url}classDetails`);
+        const data = await fetch(`${this.url}/api/classDetails`);
         const json = await data.json();
         this.addClassesToStore(<JSON> json);
       }

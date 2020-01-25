@@ -8,7 +8,7 @@ export default new Vuex.Store({
 		selectedCharacter: null,
 		characters: [] = [],
 		classes: new Object(),
-		url: 'http://localhost:3000/',
+		url: 'http://localhost:3000',
 		spellSlots: {
 			first: null,
 		},
