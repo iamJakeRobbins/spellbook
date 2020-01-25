@@ -1,21 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {ProfileState} from "@/store/storeTypes";
+import {state} from "@/store/state";
 
 Vue.use(Vuex);
-
-
- const state: ProfileState = {
-	selectedCharacter: null,
-	characters: {
-		id: null
-	},
-	classes: {},
-	url: 'http://localhost:3000',
-	spellSlots: {
-		first: null,
-	},
-};
 
 export default new Vuex.Store({
 	state: state,
