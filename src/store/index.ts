@@ -3,17 +3,30 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+interface charactersType {
+[id: number] : {}
+}
+
 export default new Vuex.Store({
   state: {
 		selectedCharacter: null,
-		characters: [] = [],
-		classes: new Object(),
+		characters: {},
+		classes: {},
 		url: 'http://localhost:3000',
 		spellSlots: {
 			first: null,
 		},
   },
   mutations: {
+  	updateCharacters(state, payload) {
+  		payload.forEach((e: any) => {
+				const ob = {...e};
+				delete ob['id'];
+				 state.characters[ e.id] = ob;
+			})
+
+		},
+
 		addCharacters(state: any, payload) {
 			state.characters = [];
 			payload.forEach((e: any) => {

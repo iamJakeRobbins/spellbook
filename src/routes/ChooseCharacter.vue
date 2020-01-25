@@ -55,7 +55,7 @@
 
 
 		public addCharacters(data: object): void {
-			this.$store.commit('addCharacters', data);
+			this.$store.commit('updateCharacters', data);
 		}
 
 		public selectCharacter(e: any): void {
