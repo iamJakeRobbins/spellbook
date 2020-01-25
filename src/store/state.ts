@@ -3,7 +3,7 @@ import {ProfileState} from "@/store/storeTypes";
 export const state: ProfileState = {
   selectedCharacter: null,
   characters: {
-    id: null
+    id: null,
   },
   classes: {},
   url: 'http://localhost:3000',

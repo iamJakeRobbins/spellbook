@@ -12,6 +12,6 @@ interface CharacterObject {
 
 interface CharactersType {
   name: string;
-  level: number
-  description: string
+  level: number;
+  description: string;
 }
