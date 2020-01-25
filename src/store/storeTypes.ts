@@ -1,17 +1,17 @@
 export interface ProfileState {
-  selectedCharacter: number | null,
-  characters: CharacterObject,
-  classes: object,
-  url: string,
-  spellSlots: object,
+  selectedCharacter: number | null;
+  characters: CharacterObject;
+  classes: object;
+  url: string;
+  spellSlots: object;
 }
 
 interface CharacterObject {
-  id: CharactersType | null,
+  id: CharactersType | null;
 }
 
 interface CharactersType {
-  name: string,
-  level: number,
-  description: string,
+  name: string;
+  level: number
+  description: string
 }
