@@ -4,13 +4,13 @@ export const getters =  {
   selectedCharacter: (state: ProfileState) => {
     return state.selectedCharacter;
   },
-      characters: (state: ProfileState) => {
+  characters: (state: ProfileState) => {
     return state.characters;
   },
-      classes: (state: ProfileState) => {
+  classes: (state: ProfileState) => {
     return state.classes;
   },
-      url: (state: ProfileState) => {
+  url: (state: ProfileState) => {
     return state.url;
   },
 };

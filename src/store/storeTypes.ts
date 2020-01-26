@@ -6,7 +6,7 @@ export interface ProfileState {
   spellSlots: SpellSlotsType;
 }
 
-interface CharacterObject {
+export interface CharacterObject {
   id: CharactersType | null;
 }
 

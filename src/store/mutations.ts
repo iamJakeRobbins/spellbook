@@ -1,7 +1,9 @@
 import {ProfileState} from "@/store/storeTypes";
 
+//nomenclature:
+// update = syncing store to fetched data
 export const mutations= {
-  updateCharacters(state: ProfileState, payload: any) {
+  updateCharacters(state: ProfileState, payload: []) {
     payload.forEach((e: any) => {
       let ob = {
         [e.id]: e,
@@ -20,8 +22,8 @@ export const mutations= {
     }
   },
 
-  getClasses(state: ProfileState, payload: any) {
-    const ob: any = new Object();
+  getClasses(state: ProfileState, payload: []) {
+    const ob: any = {};
     payload.forEach((e: any) => {
       ob[e.id] = e.description;
     });
