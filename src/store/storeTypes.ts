@@ -17,5 +17,5 @@ interface CharactersType {
 }
 
 interface SpellSlotsType {
-  first: number | null
+  first: number | null;
 }

@@ -8,29 +8,31 @@
 			<p>
 				Your casters are displayed below, select one to view their spellbooks
 			</p>
-<!--			<div class="aRow" v-for="char in characters">-->
-<!--				<span @click="selectCharacter">-->
-<!--					<img class="portrait" src="@/assets/portrait_placeholder.png" alt="portrait silhouette">-->
-<!--					<span class="nameSpan"> {{char.name}}</span>-->
-<!--					<span class="nameSpan"> Level: {{char.level}}</span>-->
-<!--					<span> {{char.description}}</span>-->
-<!--				</span>-->
-<!--				<button-->
-<!--				class="btn btn-success"-->
-<!--				:value="char.id"-->
-<!--				@click="editChar">-->
-<!--				Edit-->
-<!--			</button>-->
-<!--				<button-->
-<!--				class="btn btn-danger"-->
-<!--				:value="char.id"-->
-<!--				@click="deleteCaster">-->
-<!--				Delete-->
-<!--			</button>-->
-<!--			</div>-->
-<!--			<div class="aRow">-->
-<!--				<button class="btn btn-primary" @click="newCaster">Add A Caster</button>-->
-<!--			</div>-->
+				<div v-if="!loading">
+			<div class="aRow" v-for="char in characters">
+				<span @click="selectCharacter">
+					<img class="portrait" src="@/assets/portrait_placeholder.png" alt="portrait silhouette">
+					<span class="nameSpan"> {{char.name}}</span>
+					<span class="nameSpan"> Level: {{char.level}}</span>
+					<span> {{char.description}}</span>
+				</span>
+				<button
+				class="btn btn-success"
+				:value="char.id"
+				@click="editChar">
+				Edit
+			</button>
+				<button
+				class="btn btn-danger"
+				:value="char.id"
+				@click="deleteCaster">
+				Delete
+			</button>
+			</div>
+				</div>
+			<div class="aRow">
+				<button class="btn btn-primary" @click="newCaster">Add A Caster</button>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -49,13 +51,15 @@
 		},
 	})
 	export default class ChooseCharacter extends Vue {
-		public characters!: [];
+		// public characters!: [];
 		private userName: string = 'Jake';
 		private url!: string;
+		private loading: boolean = true;
 
 
 		public addCharacters(data: object): void {
 			this.$store.commit('updateCharacters', data);
+			this.loading = false;
 		}
 
 		public selectCharacter(e: any): void {
