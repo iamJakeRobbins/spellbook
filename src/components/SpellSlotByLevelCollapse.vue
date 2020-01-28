@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator';
+  import {Component, Prop, Vue} from 'vue-property-decorator';
   import {mapGetters} from 'vuex';
 
   @Component({
@@ -21,9 +21,12 @@
     },
   })
   export default class SpellSlotByLevelCollapse extends Vue {
+    @Prop() spellLevel!:string;
+    @Prop() spellCount!:number;
 
     private async mounted() {
-      // this component needs to fetch available spell levels so that we can loop over them to create the display field
+      console.log(this.spellLevel)
+      console.log(this.spellCount)
     }
   }
 </script>

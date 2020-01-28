@@ -13,4 +13,7 @@ export const getters =  {
   url: (state: ProfileState) => {
     return state.url;
   },
+  spellSlots: (state:ProfileState) => {
+    return state.spellSlots;
+  }
 };

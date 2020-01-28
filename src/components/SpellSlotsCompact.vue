@@ -1,9 +1,10 @@
 <template>
     <div>
-        <div v-for="slot in spellSlots">
-            <span>hello world</span>
+        here
+        <div v-for="(value, key, index) in spellSlots">
+            <spell-slot-by-level-collapse :spellLevel="key" :spellCount="value"/>
         </div>
-<!--        <spell-slot-by-level-collapse/>-->
+
     </div>
 </template>
 
@@ -21,28 +22,17 @@
             ...mapGetters([
                     'selectedCharacter',
                     'url',
+                    'spellSlots'
             ]),
         },
     })
     export default class SpellSlotsCompact extends Vue {
       private selectedCharacter!: number;
       private url!: string;
-      spellSlots = [];
+      private spellSlots!: {};
       @Prop([Number])  charId!: number;
 
       private async mounted() {
-      //     const data: object = {
-      //         id: this.charId,
-      //     };
-      //     // this component needs to fetch available spell levels so that we can loop over them to create the display field
-      //     const request = await fetch(`${this.url}/api/charSpellSlots`, {
-      //         method: 'POST',
-      //         headers: {
-      //             'Content-Type': 'application/json',
-      //         },
-      //         body: JSON.stringify(data),
-      //     });
-      //     this.spellSlots = await request.json();
       }
     }
 </script>
