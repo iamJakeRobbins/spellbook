@@ -2,15 +2,15 @@
   <div>
     <span class="pointer"
           data-toggle="collapse"
-          href="#collapseExample"
+          :href="collapseRef"
           role="button"
           aria-expanded="false"
-          aria-controls="collapseExample">
+          :aria-controls="collapseId">
       <div class="level_descriptor">
         {{spellLevel}}
       </div>
     </span>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" :id="collapseId">
       <div class="card card-body spellcard">
         <div>
           <label for="spell_levels">Spell Slots Available:</label>
@@ -33,7 +33,8 @@
   export default class SpellSlotByLevelCollapse extends Vue {
     @Prop() spellLevel!: string;
     @Prop() spellCount!: number;
-
+    collapseId: string = `collapse_${this.spellLevel}`;
+    collapseRef: string = `#${this.collapseId}`;
     private async mounted() {
 
     }
