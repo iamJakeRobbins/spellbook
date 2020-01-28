@@ -38,5 +38,6 @@ export const mutations= {
   // TODO needs to expand as spell list expands
   syncCharSpellSlots(state: ProfileState, payload: any) {
     state.spellSlots.first = payload.first;
+    state.spellSlots.second = payload.second;
   },
 };

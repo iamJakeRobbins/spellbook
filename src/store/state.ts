@@ -9,5 +9,6 @@ export const state: ProfileState = {
   url: 'http://localhost:3000',
   spellSlots: {
     first: null,
+    second: null,
   },
 };

@@ -18,4 +18,5 @@ interface CharactersType {
 
 interface SpellSlotsType {
   first: number | null;
+  second: number | null;
 }
