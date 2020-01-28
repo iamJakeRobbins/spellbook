@@ -116,6 +116,7 @@
     }
 
     private syncCharSpellSlots(data: JSON) :void {
+    	console.log(data)
     	this.$store.commit('syncCharSpellSlots', data);
     	this.syncCharSpellSlotsWithStore();
 		}

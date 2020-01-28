@@ -1,6 +1,5 @@
 <template>
     <div>
-        here
         <div v-for="(value, key, index) in spellSlots">
             <spell-slot-by-level-collapse :spellLevel="key" :spellCount="value"/>
         </div>
