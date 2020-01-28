@@ -47,6 +47,7 @@
 
   .level_descriptor {
     background-color: dimgray;
+    border: 1px solid whitesmoke;
   }
 
   .spellcard {
