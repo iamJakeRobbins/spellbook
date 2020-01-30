@@ -1,59 +1,59 @@
 <template lang="html">
-  <div id="body">
-    <div id="home_main" class="container rounded">
-      <h2>Add Character Details</h2>
-      <div class="flexContainer">
-				<div class="flexItem">
-					<div class="aRow">
-						<label>Name: </label>
-						<input
-										type="text"
-										v-bind:value="charName"
-										placeholder="Add Character Name"
-										maxlength="20"
-										@input="updateCharName($event)">
-					</div>
-					<div class="aRow">
-						<label>Character Level: </label>
-						<input
-										type="number"
-										min="1"
-										max="20"
-										:value='charLevel'
-										@input=updateCharLevel($event)>
-					</div>
-					<div class="aRow" v-if="classDetailsSet">
-						<label>Character Class: </label>
-						<select :value="charClass" @change="updateCharClass($event)">
-							<option value="0">Select...</option>
-							<option
-											v-for="(item,key,index) in classes"
-											:id="key"
-											:value="key"> {{item}}
-							</option>
-						</select>
-					</div>
-				</div>
-				<div class="flexItem">
-					<spell-slots-compact :charId="charId"/>
-				</div>
-			</div>
-      <div class="aRow">
-        <button
-                class="btn btn-primary"
-                :value="charId"
-                @click='submitCharacter'>
-          {{submitMessage}}
-        </button>
-        <button
-                class="btn btn-danger"
-                :value="charId"
-                @click="returnToChars">
-          Cancel
-        </button>
-      </div>
+    <div id="body">
+        <div id="home_main" class="container rounded">
+            <h2>Add Character Details</h2>
+            <div class="flexContainer">
+                <div class="flexItem">
+                    <div class="aRow">
+                        <label>Name: </label>
+                        <input
+                                type="text"
+                                v-bind:value="charName"
+                                placeholder="Add Character Name"
+                                maxlength="20"
+                                @input="updateCharName($event)">
+                    </div>
+                    <div class="aRow">
+                        <label>Character Level: </label>
+                        <input
+                                type="number"
+                                min="1"
+                                max="20"
+                                :value='charLevel'
+                                @input=updateCharLevel($event)>
+                    </div>
+                    <div class="aRow" v-if="classDetailsSet">
+                        <label>Character Class: </label>
+                        <select :value="charClass" @change="updateCharClass($event)">
+                            <option value="0">Select...</option>
+                            <option
+                                    v-for="(item,key,index) in classes"
+                                    :id="key"
+                                    :value="key"> {{item}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flexItem">
+                    <spell-slots-compact :charId="charId"/>
+                </div>
+            </div>
+            <div class="aRow">
+                <button
+                        class="btn btn-primary"
+                        :value="charId"
+                        @click='submitCharacter'>
+                    {{submitMessage}}
+                </button>
+                <button
+                        class="btn btn-danger"
+                        :value="charId"
+                        @click="returnToChars">
+                    Cancel
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script lang="ts">
@@ -62,26 +62,26 @@
   import {mapGetters} from 'vuex';
 
   @Component({
-		components : {
-			SpellSlotsCompact,
-		},
-		computed: {
-			...mapGetters([
-				'classes',
-				'url',
-				'selectedCharacter',
-			]),
-		},
-	})
+    components: {
+      SpellSlotsCompact,
+    },
+    computed: {
+      ...mapGetters([
+        'classes',
+        'url',
+        'selectedCharacter',
+      ]),
+    },
+  })
   export default class NewCharacter extends Vue {
-		public classDetailsSet: boolean = false;
+    public classDetailsSet: boolean = false;
     private charName: string = '';
     private charClass: number = 0;
     private charLevel: number = 0;
     private charId: any = null;
     private selectedCharacter!: number;
     private classes!: {};
-		private url!: string;
+    private url!: string;
 
     get submitMessage(): string {
       return this.selectedCharacter ? 'Update Character' : 'Add Character';
@@ -95,7 +95,7 @@
       this.charLevel = parseInt(e.target.value, 10);
     }
 
-     public updateCharClass(e: any): void {
+    public updateCharClass(e: any): void {
       this.charClass = parseInt(e.target.value, 10);
     }
 
@@ -115,14 +115,13 @@
       this.syncCharSpellSlots(json[0]);
     }
 
-    private syncCharSpellSlots(data: JSON) :void {
-    	console.log(data)
-    	this.$store.commit('syncCharSpellSlots', data);
-    	this.syncCharSpellSlotsWithStore();
-		}
+    private syncCharSpellSlots(data: JSON): void {
+      this.$store.commit('syncCharSpellSlots', data);
+      this.syncCharSpellSlotsWithStore();
+    }
 
     private syncCharInfo(data: any): void {
-    	this.$store.commit('syncCharInfo');
+      this.$store.commit('syncCharInfo');
       this.charName = data.name;
       this.charClass = data.class;
       this.charLevel = data.level;
@@ -132,11 +131,11 @@
 
     private syncCharSpellSlotsWithStore() {
 
-		}
+    }
 
-		private sycnCharInfoWithStore() {
+    private sycnCharInfoWithStore() {
 
-		}
+    }
 
     private async submitCharacter(): Promise<any> {
       const data: object = {
@@ -171,47 +170,47 @@
       if (!Object.keys(this.classes).length) {
         const data = await fetch(`${this.url}/api/classDetails`);
         const json = await data.json();
-        this.addClassesToStore(<JSON> json);
+        this.addClassesToStore(<JSON>json);
       }
       if (this.selectedCharacter) {
-        this.fetchCharacterInfo();
+        // this.fetchCharacterInfo();
       }
     }
   }
 </script>
 
 <style lang="css" scoped>
-  #body {
-    background-image: url('../assets/background_books.jpg');
-    background-size: 100vw;
-    height: 100vh;
-  }
+    #body {
+        background-image: url('../assets/background_books.jpg');
+        background-size: 100vw;
+        height: 100vh;
+    }
 
-  #home_main {
-    background-color: lightgray;
-    height: 100vh;
-    width: 60vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+    #home_main {
+        background-color: lightgray;
+        height: 100vh;
+        width: 60vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-  .aRow {
-    padding-top: .5em;
-    padding-bottom: .5em;
-  }
+    .aRow {
+        padding-top: .5em;
+        padding-bottom: .5em;
+    }
 
-	.flexContainer {
-		display: flex;
-		justify-content: space-between;
-	}
+    .flexContainer {
+        display: flex;
+        justify-content: space-between;
+    }
 
-	.flexItem {
-		width: 30vw;
-	}
+    .flexItem {
+        width: 30vw;
+    }
 
-  button {
-    padding-left: .5em;
-    padding-right: .5em;
-  }
+    button {
+        padding-left: .5em;
+        padding-right: .5em;
+    }
 </style>
