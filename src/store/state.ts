@@ -1,7 +1,7 @@
 import {ProfileState} from "@/store/storeTypes";
 
 export const state: ProfileState = {
-  selectedCharacter: null,
+  selectedCharacter: 0,
   characters: {
     id: null,
   },
