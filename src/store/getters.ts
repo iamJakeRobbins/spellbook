@@ -19,5 +19,8 @@ export const getters =  {
   selCharData: (state: ProfileState) => {
     const charId: any = state.selectedCharacter;
       return state.characters[charId];
+  },
+  submitMessage:(state: ProfileState) => {
+    return state.selectedCharacter ? 'Update Character' : 'Add Character';
   }
 };

@@ -14,6 +14,7 @@ interface CharactersType {
   name: string;
   level: number;
   description: string;
+  classId: number;
 }
 
 interface SpellSlotsType {
