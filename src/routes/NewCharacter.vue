@@ -24,7 +24,7 @@
                     </div>
                     <div class="aRow" v-if="classDetailsSet">
                         <label>Character Class: </label>
-                        <select :value="charClass" @change="updateCharClass($event)">
+                        <select :value="selCharData.classid" @change="updateCharClass($event)">
                             <option value="0">Select...</option>
                             <option
                                     v-for="(item,key,index) in classes"
@@ -71,6 +71,7 @@
         'url',
         'selectedCharacter',
         'selCharData',
+        'submitMessage',
       ]),
     },
   })
@@ -83,11 +84,10 @@
     private selectedCharacter!: number;
     private classes!: {};
     private url!: string;
-    private selCharData: any;
+    private selCharData!: any;
+    private submitMessage!: string;
 
-    get submitMessage(): string {
-      return this.selectedCharacter ? 'Update Character' : 'Add Character';
-    }
+
 
     public updateCharName($event: any): void {
       this.charName = $event.target.value;
@@ -165,6 +165,7 @@
       this.checkForClasses();
 
       if (this.selectedCharacter) {
+        console.log(this.selCharData)
         this.classDetailsSet = true;
       }
     }
