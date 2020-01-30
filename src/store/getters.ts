@@ -13,7 +13,11 @@ export const getters =  {
   url: (state: ProfileState) => {
     return state.url;
   },
-  spellSlots: (state:ProfileState) => {
+  spellSlots: (state: ProfileState) => {
     return state.spellSlots;
+  },
+  selCharData: (state: ProfileState) => {
+    const charId: any = state.selectedCharacter;
+      return state.characters[charId];
   }
 };

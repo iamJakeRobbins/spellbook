@@ -8,7 +8,7 @@
                         <label>Name: </label>
                         <input
                                 type="text"
-                                v-bind:value="charName"
+                                v-bind:value="selCharData.name"
                                 placeholder="Add Character Name"
                                 maxlength="20"
                                 @input="updateCharName($event)">
@@ -19,7 +19,7 @@
                                 type="number"
                                 min="1"
                                 max="20"
-                                :value='charLevel'
+                                :value='selCharData.level'
                                 @input=updateCharLevel($event)>
                     </div>
                     <div class="aRow" v-if="classDetailsSet">
@@ -70,6 +70,7 @@
         'classes',
         'url',
         'selectedCharacter',
+        'selCharData',
       ]),
     },
   })
@@ -82,6 +83,7 @@
     private selectedCharacter!: number;
     private classes!: {};
     private url!: string;
+    private selCharData: any;
 
     get submitMessage(): string {
       return this.selectedCharacter ? 'Update Character' : 'Add Character';
@@ -99,22 +101,6 @@
       this.charClass = parseInt(e.target.value, 10);
     }
 
-    private async fetchCharacterInfo() {
-      const data = await fetch(`${this.url}/api/getSingleCharacter`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: this.selectedCharacter,
-        }),
-      });
-
-      const json = await data.json();
-      this.syncCharInfo(json[0]);
-      this.syncCharSpellSlots(json[0]);
-    }
-
     private syncCharSpellSlots(data: JSON): void {
       this.$store.commit('syncCharSpellSlots', data);
       this.syncCharSpellSlotsWithStore();
@@ -126,7 +112,7 @@
       this.charClass = data.class;
       this.charLevel = data.level;
       this.charId = data.id;
-      this.classDetailsSet = true;
+      // this.classDetailsSet = true;
     }
 
     private syncCharSpellSlotsWithStore() {
@@ -145,7 +131,7 @@
         id: this.charId,
       };
       // need to add validation before submitting
-      const route: string = this.charId ? `${this.url}/api/updateCharacter` : `${this.url}submitCharacter`;
+      const route: string = this.charId ? `${this.url}/api/updateCharacter` : `${this.url}/api/submitCharacter`;
       const request = await fetch(`${route}`, {
         method: 'POST',
         headers: {
@@ -165,15 +151,21 @@
       this.$router.push('/char');
     }
 
-    private async mounted(): Promise<any> {
+    private async checkForClasses(): Promise<any> {
 
       if (!Object.keys(this.classes).length) {
         const data = await fetch(`${this.url}/api/classDetails`);
         const json = await data.json();
         this.addClassesToStore(<JSON>json);
       }
+    }
+
+    private mounted(): void {
+
+      this.checkForClasses();
+
       if (this.selectedCharacter) {
-        // this.fetchCharacterInfo();
+        this.classDetailsSet = true;
       }
     }
   }
