@@ -1,5 +1,5 @@
 export interface ProfileState {
-  selectedCharacter: number;
+  selectedCharacter: number | null;
   characters: CharacterObject;
   classes: object;
   url: string;

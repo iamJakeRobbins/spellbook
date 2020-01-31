@@ -17,8 +17,8 @@ export const getters =  {
     return state.spellSlots;
   },
   selCharData: (state: ProfileState) => {
-    const charId = state.selectedCharacter;
-      return state.characters[charId];
+    const charId: number | null = state.selectedCharacter;
+      return state.characters[Number(charId)];
   },
   submitMessage:(state: ProfileState) => {
     return state.selectedCharacter ? 'Update Character' : 'Add Character';

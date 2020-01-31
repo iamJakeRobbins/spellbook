@@ -10,7 +10,6 @@ export const mutations= {
       };
       Object.assign(state.characters, ob)
     });
-    delete state.characters['id'];
   },
   updateSelectedCharacter(state: ProfileState, payload: any) {
     if (payload) {
