@@ -51,7 +51,7 @@
     },
   })
   export default class ChooseCharacter extends Vue {
-    private userName: string = 'Jake';
+    public userName: string = 'Jake';
     private url!: string;
     private loading: boolean = true;
 

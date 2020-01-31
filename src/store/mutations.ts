@@ -1,14 +1,14 @@
 import {ProfileState} from "@/store/storeTypes";
 
-//nomenclature:
+// nomenclature:
 // update = syncing store to fetched data
-export const mutations= {
+export const mutations = {
   updateCharacters(state: ProfileState, payload: []) {
     payload.forEach((e: any) => {
-      let ob = {
+      const ob = {
         [e.id]: e,
       };
-      Object.assign(state.characters, ob)
+      Object.assign(state.characters, ob);
     });
   },
   updateSelectedCharacter(state: ProfileState, payload: any) {
@@ -30,9 +30,9 @@ export const mutations= {
     state.classes = ob;
   },
 
-  syncCharInfo(state: ProfileState, payload: any) {
-
-  },
+  // syncCharInfo(state: ProfileState, payload: any) {
+  //
+  // },
 
   // TODO needs to expand as spell list expands
   syncCharSpellSlots(state: ProfileState, payload: any) {

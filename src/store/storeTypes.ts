@@ -7,7 +7,7 @@ export interface ProfileState {
 }
 
 export interface CharacterObject {
-  [id:number]: CharactersType | null;
+  [id: number]: CharactersType | null;
 }
 
 interface CharactersType {

@@ -101,10 +101,10 @@
       this.charClass = parseInt(e.target.value, 10);
     }
 
-    private syncCharSpellSlots(data: JSON): void {
-      this.$store.commit('syncCharSpellSlots', data);
-      this.syncCharSpellSlotsWithStore();
-    }
+    // private syncCharSpellSlots(data: JSON): void {
+    //   this.$store.commit('syncCharSpellSlots', data);
+    //   this.syncCharSpellSlotsWithStore();
+    // }
 
     private async submitCharacter(): Promise<any> {
       const data: object = {
@@ -139,13 +139,13 @@
       if (!Object.keys(this.classes).length) {
         const data = await fetch(`${this.url}/api/classDetails`);
         const json = await data.json();
-        this.addClassesToStore(<JSON>json);
+        this.addClassesToStore(<JSON> json);
       }
     }
 
-    private createDummyForNewChar() {
-
-    }
+    // private createDummyForNewChar() {
+    //
+    // }
 
     private mounted(): void {
 
