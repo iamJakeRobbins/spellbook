@@ -106,23 +106,6 @@
       this.syncCharSpellSlotsWithStore();
     }
 
-    private syncCharInfo(data: any): void {
-      this.$store.commit('syncCharInfo');
-      this.charName = data.name;
-      this.charClass = data.class;
-      this.charLevel = data.level;
-      this.charId = data.id;
-      // this.classDetailsSet = true;
-    }
-
-    private syncCharSpellSlotsWithStore() {
-
-    }
-
-    private sycnCharInfoWithStore() {
-
-    }
-
     private async submitCharacter(): Promise<any> {
       const data: object = {
         name: this.charName,
@@ -160,13 +143,18 @@
       }
     }
 
+    private createDummyForNewChar() {
+
+    }
+
     private mounted(): void {
 
       this.checkForClasses();
 
-      if (this.selectedCharacter) {
-        console.log(this.selCharData)
+      if (this.selectedCharacter > 0) {
         this.classDetailsSet = true;
+      } else {
+        this.createDummyForNewChar();
       }
     }
   }
