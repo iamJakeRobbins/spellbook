@@ -16,18 +16,18 @@ const routes = [
   {
     path: '/char',
     name: 'CharacterChoice',
-		component: ChooseCharacter,
+    component: ChooseCharacter,
   },
-	{
-		path: '/spellbook',
-		name: 'Spellbook',
-		component: Spellbook,
-	},
-	{
-		path: '/addCharacter',
-		name: 'NewCaster',
-		component: NewCharacter,
-	},
+  {
+    path: '/spellbook',
+    name: 'Spellbook',
+    component: Spellbook,
+  },
+  {
+    path: '/addCharacter',
+    name: 'NewCaster',
+    component: NewCharacter,
+  },
 ];
 
 const router = new VueRouter({
