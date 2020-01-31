@@ -101,10 +101,10 @@
       this.charClass = parseInt(e.target.value, 10);
     }
 
-    // private syncCharSpellSlots(data: JSON): void {
-    //   this.$store.commit('syncCharSpellSlots', data);
-    //   this.syncCharSpellSlotsWithStore();
-    // }
+    private syncCharSpellSlots(data: JSON): void {
+      this.$store.commit('syncCharSpellSlots', data);
+      // this.syncCharSpellSlotsWithStore();
+    }
 
     private async submitCharacter(): Promise<any> {
       const data: object = {
@@ -143,18 +143,27 @@
       }
     }
 
-    // private createDummyForNewChar() {
-    //
-    // }
+    private async getCharSpells(): Promise<any> {
+      const data = await fetch(`${this.url}/api/getSingleCharacter` , {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: this.selectedCharacter
+        }),
+      });
+      const json = await data.json();
+      this.syncCharSpellSlots(json[0])
+    }
 
     private mounted(): void {
 
       this.checkForClasses();
 
-      if (this.selectedCharacter > 0) {
+      if (this.selectedCharacter) {
+        this.getCharSpells();
         this.classDetailsSet = true;
-      } else {
-        this.createDummyForNewChar();
       }
     }
   }
