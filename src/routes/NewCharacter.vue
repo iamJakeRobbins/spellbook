@@ -24,7 +24,7 @@
                     </div>
                     <div class="aRow" v-if="classDetailsSet">
                         <label>Character Class: </label>
-                        <select :value="charDetails.classid" @change="updateCharClass($event)">
+                        <select :value="charDetails.classId" @change="updateCharClass($event)">
                             <option value="0">Select...</option>
                             <option
                                     v-for="(item,key,index) in classes"
@@ -35,19 +35,19 @@
                     </div>
                 </div>
                 <div class="flexItem">
-                    <spell-slots-compact :charId="charId"/>
+                    <spell-slots-compact/>
                 </div>
             </div>
             <div class="aRow">
                 <button
                         class="btn btn-primary"
-                        :value="charId"
+                        :value="selectedCharacter"
                         @click='submitCharacter'>
                     {{submitMessage}}
                 </button>
                 <button
                         class="btn btn-danger"
-                        :value="charId"
+                        :value="selectedCharacter"
                         @click="returnToChars">
                     Cancel
                 </button>
@@ -60,6 +60,7 @@
   import {Component, Vue} from 'vue-property-decorator';
   import SpellSlotsCompact from '@/components/SpellSlotsCompact.vue';
   import {mapGetters} from 'vuex';
+  import {CharactersType} from "@/store/storeTypes";
 
   @Component({
     components: {
@@ -77,46 +78,52 @@
   })
   export default class NewCharacter extends Vue {
     public classDetailsSet: boolean = false;
-    private charName: string = '';
-    private charClass: number = 0;
-    private charLevel: number = 0;
-    private charId: any = null;
     private selectedCharacter!: number | null;
     private classes!: {};
     private url!: string;
     private selCharData!: any;
     private submitMessage!: string;
-    private charDetails: {} = {};
+    private charDetails: CharactersType = {
+      name: '',
+      level: 0,
+      description: '',
+      classId: 0,
+      spellSlots: {
+        first: null,
+        second: null
+      }
+    };
 
     public updateCharName($event: any): void {
-      this.charName = $event.target.value;
+      this.charDetails.name = $event.target.value;
     }
 
     public updateCharLevel(e: any): void {
-      this.charLevel = parseInt(e.target.value, 10);
+      this.charDetails.level = parseInt(e.target.value, 10);
     }
 
     public updateCharClass(e: any): void {
-      this.charClass = parseInt(e.target.value, 10);
+      this.charDetails.classId = parseInt(e.target.value, 10);
     }
 
     private async submitCharacter(): Promise<any> {
-      const data: object = {
-        name: this.charName,
-        level: this.charLevel,
-        class: this.charClass,
-        id: this.charId,
-      };
+      // update query to use charDetails object
+      // const data: object = {
+      //   name: this.charName,
+      //   level: this.charLevel,
+      //   class: this.charClass,
+      //   id: this.charId,
+      // };
       // need to add validation before submitting
-      const route: string = this.charId ? `${this.url}/api/updateCharacter` : `${this.url}/api/submitCharacter`;
-      const request = await fetch(`${route}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      this.returnToChars();
+      // const route: string = this.selectedCharacter ? `${this.url}/api/updateCharacter` : `${this.url}/api/submitCharacter`;
+      // const request = await fetch(`${route}`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+        // body: JSON.stringify(data),
+      // });
+      // this.returnToChars();
     }
 
     private returnToChars(): void {
@@ -138,25 +145,19 @@
     }
 
     private buildCharDetails(): void {
-      // if we are editing a character set starting values of this object to selCharData values, otherwise set them to defaults
       const charObject = {
         name: this.selectedCharacter ? this.selCharData.name : '',
         level: this.selectedCharacter ? this.selCharData.level : 0,
         classId: this.selectedCharacter ? this.selCharData.classid : 0,
-        // spellSlots: this.selectedCharacter ? this.selCharData.spellSlots : {},
+        spellSlots: this.selectedCharacter ? this.selCharData.spellSlots : {},
       };
       this.charDetails = {...charObject};
       this.classDetailsSet = true;
-
-      console.log(this.charDetails)
     }
 
     private mounted(): void {
       this.checkForClasses();
       this.buildCharDetails();
-      // if (this.selectedCharacter) {
-      //   this.classDetailsSet = true;
-      // }
     }
   }
 </script>
