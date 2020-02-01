@@ -15,7 +15,10 @@ export const getters =  {
   },
   spellSlots: (state: ProfileState) => {
     const charId: number | null = state.selectedCharacter;
-    return state.characters[Number(charId)]!.spellSlots;
+    if(charId) {
+      return state.characters[Number(charId)]!.spellSlots;
+    }
+    return {first: 0, second: 0};
   },
   selCharData: (state: ProfileState) => {
     const charId: number | null = state.selectedCharacter;
