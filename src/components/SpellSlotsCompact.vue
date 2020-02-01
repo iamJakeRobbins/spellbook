@@ -29,7 +29,6 @@
       private selectedCharacter!: number;
       private url!: string;
       private spellSlots!: {};
-      @Prop([Number])  charId!: number;
 
       private async mounted() {
       }
