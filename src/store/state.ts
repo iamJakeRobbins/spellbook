@@ -5,8 +5,4 @@ export const state: ProfileState = {
   characters: {},
   classes: {},
   url: 'http://localhost:3000',
-  spellSlots: {
-    first: null,
-    second: null,
-  },
 };

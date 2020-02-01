@@ -14,7 +14,8 @@ export const getters =  {
     return state.url;
   },
   spellSlots: (state: ProfileState) => {
-    return state.spellSlots;
+    const charId: number | null = state.selectedCharacter;
+    return state.characters[Number(charId)]!.spellSlots;
   },
   selCharData: (state: ProfileState) => {
     const charId: number | null = state.selectedCharacter;
