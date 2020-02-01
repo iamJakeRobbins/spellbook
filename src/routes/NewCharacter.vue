@@ -8,7 +8,7 @@
                         <label>Name: </label>
                         <input
                                 type="text"
-                                v-bind:value="selCharData.name"
+                                v-bind:value="charDetails.name"
                                 placeholder="Add Character Name"
                                 maxlength="20"
                                 @input="updateCharName($event)">
@@ -19,12 +19,12 @@
                                 type="number"
                                 min="1"
                                 max="20"
-                                :value='selCharData.level'
+                                :value='charDetails.level'
                                 @input=updateCharLevel($event)>
                     </div>
                     <div class="aRow" v-if="classDetailsSet">
                         <label>Character Class: </label>
-                        <select :value="selCharData.classid" @change="updateCharClass($event)">
+                        <select :value="charDetails.classid" @change="updateCharClass($event)">
                             <option value="0">Select...</option>
                             <option
                                     v-for="(item,key,index) in classes"
@@ -86,6 +86,7 @@
     private url!: string;
     private selCharData!: any;
     private submitMessage!: string;
+    private charDetails: {} = {};
 
     public updateCharName($event: any): void {
       this.charName = $event.target.value;
@@ -142,8 +143,12 @@
         name: this.selectedCharacter ? this.selCharData.name : '',
         level: this.selectedCharacter ? this.selCharData.level : 0,
         classId: this.selectedCharacter ? this.selCharData.classid : 0,
-        spellSlots: this.selectedCharacter ? this.selCharData.spellSlots : {},
+        // spellSlots: this.selectedCharacter ? this.selCharData.spellSlots : {},
       };
+      this.charDetails = {...charObject};
+      this.classDetailsSet = true;
+
+      console.log(this.charDetails)
     }
 
     private mounted(): void {
