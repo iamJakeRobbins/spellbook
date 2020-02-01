@@ -5,7 +5,6 @@ import {ProfileState} from "@/store/storeTypes";
 export const mutations = {
   updateCharacters(state: ProfileState, payload: []) {
     payload.forEach((e: any) => {
-      console.log(e)
       const ob = {
         [e.id]: e,
       };
