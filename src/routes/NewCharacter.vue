@@ -81,13 +81,11 @@
     private charClass: number = 0;
     private charLevel: number = 0;
     private charId: any = null;
-    private selectedCharacter!: number;
+    private selectedCharacter!: number | null;
     private classes!: {};
     private url!: string;
     private selCharData!: any;
     private submitMessage!: string;
-
-
 
     public updateCharName($event: any): void {
       this.charName = $event.target.value;
@@ -100,7 +98,6 @@
     public updateCharClass(e: any): void {
       this.charClass = parseInt(e.target.value, 10);
     }
-
 
     private async submitCharacter(): Promise<any> {
       const data: object = {
@@ -121,11 +118,6 @@
       this.returnToChars();
     }
 
-    private addClassesToStore(data: JSON): void {
-      this.$store.commit('getClasses', data);
-      this.classDetailsSet = true;
-    }
-
     private returnToChars(): void {
       this.$router.push('/char');
     }
@@ -139,13 +131,27 @@
       }
     }
 
+    private addClassesToStore(data: JSON): void {
+      this.$store.commit('getClasses', data);
+      this.classDetailsSet = true;
+    }
+
+    private buildCharDetails(): void {
+      // if we are editing a character set starting values of this object to selCharData values, otherwise set them to defaults
+      const charObject = {
+        name: this.selectedCharacter ? this.selCharData.name : '',
+        level: this.selectedCharacter ? this.selCharData.level : 0,
+        classId: this.selectedCharacter ? this.selCharData.classid : 0,
+        spellSlots: this.selectedCharacter ? this.selCharData.spellSlots : {},
+      };
+    }
+
     private mounted(): void {
-
       this.checkForClasses();
-
-      if (this.selectedCharacter) {
-        this.classDetailsSet = true;
-      }
+      this.buildCharDetails();
+      // if (this.selectedCharacter) {
+      //   this.classDetailsSet = true;
+      // }
     }
   }
 </script>
