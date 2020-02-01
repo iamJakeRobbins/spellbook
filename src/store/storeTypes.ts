@@ -9,7 +9,7 @@ export interface CharacterObject {
   [id: number]: CharactersType | null;
 }
 
-interface CharactersType {
+export interface CharactersType {
   name: string;
   level: number;
   description: string;
