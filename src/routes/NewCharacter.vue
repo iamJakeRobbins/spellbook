@@ -126,12 +126,10 @@
     }
 
     private async submitCharacter(): Promise<any> {
-      // need to add validation before submitting
+
       if(this.validForm()) {
-
-
       const route: string = this.selectedCharacter ? `${this.url}/api/updateCharacter` : `${this.url}/api/submitCharacter`;
-      const request = await fetch(`${route}`, {
+      await fetch(`${route}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -147,7 +145,6 @@
     }
 
     private async checkForClasses(): Promise<any> {
-
       if (!Object.keys(this.classes).length) {
         const data = await fetch(`${this.url}/api/classDetails`);
         const json = await data.json();
@@ -166,6 +163,7 @@
         level: this.selectedCharacter ? this.selCharData.level : 0,
         classId: this.selectedCharacter ? this.selCharData.classid : 0,
         spellSlots: this.selectedCharacter ? this.selCharData.spellSlots : {},
+        description: '';
       };
       this.charDetails = {...charObject};
       this.classDetailsSet = true;
