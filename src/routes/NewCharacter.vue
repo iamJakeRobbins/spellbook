@@ -106,11 +106,30 @@
       this.charDetails.classId = parseInt(e.target.value, 10);
     }
 
+    private validForm(): boolean {
+      let errors: any = [];
+      Object.keys(this.charDetails).forEach((e: any) => {
+        if(!this.charDetails[e] || this.charDetails[e] === '') {
+          errors.push(e);
+        }
+      });
+
+      if( errors.length === 0) {
+        return true;
+      }
+      this.handleSubmitErrors(errors);
+      return false;
+    }
+
+    private handleSubmitErrors(errors: []) {
+
+    }
+
     private async submitCharacter(): Promise<any> {
-      // update query to use charDetails object
-      console.log(this.charDetails);
-      console.log(this.selectedCharacter);
       // need to add validation before submitting
+      if(this.validForm()) {
+
+
       const route: string = this.selectedCharacter ? `${this.url}/api/updateCharacter` : `${this.url}/api/submitCharacter`;
       const request = await fetch(`${route}`, {
         method: 'POST',
@@ -119,7 +138,8 @@
         },
         body: JSON.stringify(Object.assign(this.charDetails, {'id': this.selectedCharacter})),
       });
-      // this.returnToChars();
+      this.returnToChars();
+      }
     }
 
     private returnToChars(): void {
