@@ -108,21 +108,17 @@
 
     private async submitCharacter(): Promise<any> {
       // update query to use charDetails object
-      // const data: object = {
-      //   name: this.charName,
-      //   level: this.charLevel,
-      //   class: this.charClass,
-      //   id: this.charId,
-      // };
+      console.log(this.charDetails);
+      console.log(this.selectedCharacter);
       // need to add validation before submitting
-      // const route: string = this.selectedCharacter ? `${this.url}/api/updateCharacter` : `${this.url}/api/submitCharacter`;
-      // const request = await fetch(`${route}`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-        // body: JSON.stringify(data),
-      // });
+      const route: string = this.selectedCharacter ? `${this.url}/api/updateCharacter` : `${this.url}/api/submitCharacter`;
+      const request = await fetch(`${route}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Object.assign(this.charDetails, {'id': this.selectedCharacter})),
+      });
       // this.returnToChars();
     }
 
